@@ -1,8 +1,17 @@
-﻿<?php
+<?php
 /** @var array $alerts */
 /** @var array $profile */
 /** @var array $trend */
 /** @var string $csrfToken */
+
+if (!function_exists('__lucide_icon_helper')) {
+    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
+}
+
+$lucideIcon = fn(string $name, string $classes = 'h-4 w-4'): string => __lucide_icon_helper($name, $classes);
 
 $alerts = $alerts ?? [];
 $currency = htmlspecialchars($profile['currency'] ?? 'MXN', ENT_QUOTES, 'UTF-8');
@@ -26,9 +35,9 @@ $levelBadges = [
 ];
 
 $levelIcons = [
-    'danger' => '!',
-    'warning' => '!',
-    'info' => 'i',
+    'danger' => 'alert-triangle',
+    'warning' => 'alert-octagon',
+    'info' => 'info',
 ];
 
 $pendingCount = 0;
@@ -98,7 +107,7 @@ foreach ($alerts as $alert) {
             <?php if (empty($alerts)): ?>
                 <div class="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
                     <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-brand-200 text-brand-600">
-                        
+                        <?= $lucideIcon('bell-ring', 'h-6 w-6') ?>
                     </div>
                     <h3 class="text-lg font-semibold text-slate-700">Todo en orden</h3>
                     <p class="mt-2 text-sm text-slate-500">
@@ -112,7 +121,7 @@ foreach ($alerts as $alert) {
                         $level = $alert['level'] ?? 'info';
                         $style = $levelClasses[$level] ?? 'border-slate-200 bg-white text-slate-600';
                         $badgeStyle = $levelBadges[$level] ?? 'bg-brand-500 text-white';
-                        $icon = $levelIcons[$level] ?? 'i';
+                        $icon = $levelIcons[$level] ?? 'info';
                         $label = $levelLabels[$level] ?? ucfirst($level);
                         $payload = $alert['payload'] ?? [];
                         ?>
@@ -121,7 +130,7 @@ foreach ($alerts as $alert) {
                                 <div class="space-y-2">
                                     <div class="flex items-center gap-3">
                                         <span class="flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold <?= $badgeStyle ?>">
-                                            <?= htmlspecialchars($icon, ENT_QUOTES, 'UTF-8') ?>
+                                            <?= $lucideIcon($icon) ?>
                                         </span>
                                         <div>
                                             <p class="text-xs font-semibold uppercase tracking-wide">
