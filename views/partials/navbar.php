@@ -50,7 +50,7 @@ function renderSidebarIcon(string $icon): string
         '</svg>';
 }
 ?>
-<aside class="hidden lg:flex flex-col bg-white/90 dark:bg-slate-900/85 backdrop-blur-2xl border-r border-slate-200/70 dark:border-slate-800/70 px-6 py-8 relative" data-app-sidebar>
+<aside class="hidden lg:flex flex-col sidebar-panel px-6 py-8 relative" data-app-sidebar>
     <button type="button" class="sidebar-toggle hidden xl:flex transition hover:shadow-floating" data-sidebar-toggle aria-expanded="true">
         <span class="sr-only" data-sidebar-toggle-label>Colapsar menu</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

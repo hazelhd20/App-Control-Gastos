@@ -1,4 +1,4 @@
-<footer class="mt-16 border-t border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl">
+<footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
         <div class="text-center md:text-left">
             &copy; <?= date('Y') ?> Control de Gastos. Claridad y confianza para tus finanzas personales.

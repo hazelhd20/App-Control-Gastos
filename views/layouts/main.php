@@ -77,15 +77,15 @@ $pageTitle = $title ?? 'Control de Gastos';
     <link rel="stylesheet" href="/App-Control-Gastos/public/assets/css/app.css">
     <script defer src="/App-Control-Gastos/public/assets/js/app.js"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
+<body class="theme-shell min-h-screen text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
     <div class="app-grid bg-transparent" data-app-grid>
         <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
         <div class="flex flex-col min-h-screen bg-soft-spot/40 dark:bg-transparent">
-            <header class="sticky top-0 z-30 border-b border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+            <header class="app-header sticky top-0 z-30">
                 <div class="px-5 lg:px-10 py-4 flex items-center gap-4 justify-between">
                     <div class="flex items-center gap-3">
-                        <button class="lg:hidden inline-flex items-center justify-center rounded-full border border-slate-200/80 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 px-3 py-2 shadow-sm hover:border-brand-300 transition" data-mobile-nav aria-label="Abrir navegacion">
+                        <button class="lg:hidden inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 shadow-sm hover:border-brand-300 transition" data-mobile-nav aria-label="Abrir navegacion">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
@@ -100,7 +100,7 @@ $pageTitle = $title ?? 'Control de Gastos';
 
                     <div class="hidden md:flex items-center gap-3 flex-1">
                         <div class="relative flex-1 max-w-md">
-                            <input type="search" placeholder="Buscar movimientos, categorias o reportes..." class="w-full rounded-full border border-slate-200/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-900/80 px-5 py-3 pl-12 text-sm focus:border-brand-300 focus:ring focus:ring-info/20 transition" aria-label="Buscar en la aplicacion">
+                            <input type="search" placeholder="Buscar movimientos, categorias o reportes..." class="w-full rounded-full input-soft px-5 py-3 pl-12 text-sm text-slate-600 dark:text-slate-200" aria-label="Buscar en la aplicacion">
                             <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.65 6.65a7.5 7.5 0 0 0 10 10Z"/>
                             </svg>
@@ -114,7 +114,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <button class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-700/70 bg-white/90 dark:bg-slate-900/80 px-4 py-2 text-sm font-semibold transition hover:border-brand-200 hover:text-brand-600 dark:hover:border-info/40 dark:hover:text-info/90" data-theme-toggle type="button" aria-label="Alternar modo oscuro">
+                        <button class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-200 transition hover:border-brand-200 hover:text-brand-600 dark:hover:border-info/40 dark:hover:text-info/90" data-theme-toggle type="button" aria-label="Alternar modo oscuro">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1.5m6.36.64-1.06 1.06M21 12h-1.5m-.64 6.36-1.06-1.06M12 21v-1.5m-6.36-.64 1.06-1.06M4.5 12H3m.64-6.36 1.06 1.06M12 8.25A3.75 3.75 0 1 0 15.75 12 3.75 3.75 0 0 0 12 8.25Z"/>
                             </svg>
@@ -127,7 +127,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                             </div>
                             <form action="/App-Control-Gastos/public/logout" method="POST" class="hidden sm:block">
                                 <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
-                                <button class="rounded-full bg-white/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-700/60 px-4 py-2 text-sm font-semibold text-brand-600 dark:text-info hover:border-brand-300 hover:text-brand-700 transition">
+                                <button class="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-semibold text-brand-600 dark:text-info hover:border-brand-300 hover:text-brand-700 transition">
                                     Cerrar sesion
                                 </button>
                             </form>

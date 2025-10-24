@@ -39,37 +39,37 @@ $alertPalette = [
 <section class="space-y-12">
     <header class="gradient-card p-10 md:p-12 shadow-floating overflow-hidden relative">
         <div class="absolute right-10 top-10 hidden md:block">
-            <div class="h-32 w-32 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white/70 text-xs uppercase tracking-[0.4em]">
+            <div class="hero-badge h-32 w-32 text-xs uppercase tracking-[0.4em]">
                 <?= htmlspecialchars(strtoupper($currency), ENT_QUOTES, 'UTF-8') ?>
             </div>
         </div>
         <div class="space-y-8 relative z-10">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div class="space-y-4 max-w-2xl">
-                    <p class="text-xs uppercase tracking-[0.35em] text-white/70 font-semibold">Panel financiero</p>
-                    <h1 class="text-3xl sm:text-4xl font-semibold leading-tight">
+                    <p class="text-xs uppercase tracking-[0.35em] text-slate-500 font-semibold">Panel financiero</p>
+                    <h1 class="text-3xl sm:text-4xl font-semibold leading-tight text-slate-900 dark:text-white">
                         Hola, <?= htmlspecialchars($profile['name'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?>
                     </h1>
-                    <p class="text-white/80 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-200 leading-relaxed">
                         Observa tus resultados del mes, controla el uso de tu limite y avanza hacia <?= htmlspecialchars(strtolower($goalLabel), ENT_QUOTES, 'UTF-8') ?> con decisiones basadas en datos.
                     </p>
                     <?php if ($daysSinceLastMovement !== null && $daysSinceLastMovement >= 7): ?>
-                        <div class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold text-white/80">
-                            <span class="inline-flex h-2 w-2 rounded-full bg-white"></span>
+                        <div class="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50/80 px-4 py-2 text-xs font-semibold text-amber-700 dark:border-amber-400/60 dark:bg-amber-500/20 dark:text-amber-200">
+                            <span class="inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
                             Han pasado <?= $daysSinceLastMovement ?> dias sin registrar movimientos. Actualiza tus datos para mantener el panorama preciso.
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="bg-white/15 rounded-3xl border border-white/25 backdrop-blur-xl px-6 py-5 max-w-sm shadow-floating space-y-3 text-sm">
-                    <p class="text-white/70 uppercase tracking-wide text-xs font-semibold">Objetivo en curso</p>
-                    <p class="text-lg font-semibold"><?= htmlspecialchars($goalLabel, ENT_QUOTES, 'UTF-8') ?></p>
+                <div class="panel-elevated px-6 py-5 max-w-sm space-y-3 text-sm text-slate-600 dark:text-slate-200">
+                    <p class="text-xs uppercase tracking-wide text-slate-500 font-semibold">Objetivo en curso</p>
+                    <p class="text-lg font-semibold text-slate-900 dark:text-white"><?= htmlspecialchars($goalLabel, ENT_QUOTES, 'UTF-8') ?></p>
                     <?php if (!empty($profile['goal_description'])): ?>
-                        <p class="text-white/75">
+                        <p>
                             <?= htmlspecialchars($profile['goal_description'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     <?php endif; ?>
-                    <div class="flex items-center gap-3 text-xs text-white/70">
-                        <span class="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/25">
+                    <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-300">
+                        <span class="inline-flex items-center justify-center h-8 w-8 rounded-full border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-200">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6l3 1.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                             </svg>
