@@ -8,6 +8,15 @@
 /** @var array $rows */
 
 $currency = htmlspecialchars($profile['currency'], ENT_QUOTES, 'UTF-8');
+
+if (!function_exists('__lucide_icon_helper')) {
+    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
+}
+
+$icon = fn(string $name, string $classes = 'h-4 w-4'): string => __lucide_icon_helper($name, $classes);
 $from = htmlspecialchars($filters['from'], ENT_QUOTES, 'UTF-8');
 $to = htmlspecialchars($filters['to'], ENT_QUOTES, 'UTF-8');
 $typeFilter = htmlspecialchars($filters['type'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -53,15 +62,11 @@ $exportQuery = http_build_query([
         </div>
         <div class="flex flex-wrap gap-3">
             <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=csv" class="inline-flex items-center gap-2 rounded-full border border-brand-200/70 bg-white/80 text-brand-600 text-sm font-semibold px-4 py-2 shadow-soft hover:bg-brand-50 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 4.5h15m-15 0v15h15v-15m-6 4.5v6m3-3h-6"/>
-                </svg>
+                <?= $icon('file-down', 'h-4 w-4') ?>
                 Descargar CSV
             </a>
             <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=xlsx" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-4 py-2 shadow-floating hover:bg-brand-700 transition transition-press">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6"/>
-                </svg>
+                <?= $icon('table', 'h-4 w-4') ?>
                 Descargar Excel
             </a>
         </div>
@@ -101,9 +106,7 @@ $exportQuery = http_build_query([
             </div>
             <div class="md:col-span-5 flex justify-end gap-3">
                 <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 shadow-floating hover:bg-brand-700 transition transition-press">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 4.5h15m-1.5 0-.75 9m-11.5 0L4.5 4.5m3 9h9m-9 0 1.5 6m7.5-6-1.5 6"/>
-                    </svg>
+                    <?= $icon('filter', 'h-4 w-4') ?>
                     Aplicar filtros
                 </button>
                 <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-slate-200/70 text-sm font-semibold text-slate-500 px-5 py-2.5 hover:border-brand-200 hover:text-brand-600 transition">
@@ -118,10 +121,7 @@ $exportQuery = http_build_query([
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Ingresos base</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0-9-9"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 7.5V12l2.5 1.25"/>
-                    </svg>
+                    <?= $icon('clock-3') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['base_income'], 2) ?> <?= $currency ?></p>
@@ -131,10 +131,7 @@ $exportQuery = http_build_query([
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Ingresos registrados</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12a9 9 0 1 1 9 9"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 12h9M12 7.5v9"/>
-                    </svg>
+                    <?= $icon('piggy-bank') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['registered_income'], 2) ?> <?= $currency ?></p>
@@ -144,9 +141,7 @@ $exportQuery = http_build_query([
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 3 18 18M9.75 9.75 4.5 14.25m15 0A7.5 7.5 0 0 0 9.75 9.75"/>
-                    </svg>
+                    <?= $icon('trending-down') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-danger"><?= number_format($overview['expenses'], 2) ?> <?= $currency ?></p>
@@ -156,9 +151,7 @@ $exportQuery = http_build_query([
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Resultado neto</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8.25v7.5m-3.75-3.75h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                    </svg>
+                    <?= $icon('calculator') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold <?= $overview['net'] >= 0 ? 'text-brand-700 dark:text-info' : 'text-danger' ?>"><?= number_format($overview['net'], 2) ?> <?= $currency ?></p>

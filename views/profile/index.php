@@ -9,6 +9,15 @@
 
 $old ??= [];
 
+if (!function_exists('__lucide_icon_helper')) {
+    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
+}
+
+$icon = fn(string $name, string $classes = 'h-4 w-4'): string => __lucide_icon_helper($name, $classes);
+
 $value = function (string $field, mixed $default = '') use ($old, $profile, $user) {
     if (array_key_exists($field, $old)) {
         return $old[$field];
@@ -67,16 +76,12 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             </div>
             <div class="flex flex-wrap gap-3">
                 <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-white/90/90 text-brand-600 px-5 py-3 text-sm font-semibold shadow-soft hover:bg-white/90 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6"/>
-                    </svg>
+                    <?= $icon('plus-circle') ?>
                     Registrar movimiento
                 </a>
                 <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-white/40 text-white px-5 py-3 text-sm font-semibold hover:bg-white/90/15 transition">
                     Ver reportes
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m9 5 7 7-7 7"/>
-                    </svg>
+                    <?= $icon('chevron-right') ?>
                 </a>
             </div>
         </div>
@@ -101,9 +106,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Ingreso total mensual</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6"/>
-                    </svg>
+                    <?= $icon('wallet') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format((float) $summary['income_total'], 2) ?> <?= htmlspecialchars($summary['currency'], ENT_QUOTES, 'UTF-8') ?></p>
@@ -114,9 +117,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Limite de gastos</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 4.5h15v15h-15zM9 9v6m6-6v6"/>
-                    </svg>
+                    <?= $icon('target') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format((float) $summary['limit'], 2) ?> <?= htmlspecialchars($summary['currency'], ENT_QUOTES, 'UTF-8') ?></p>
@@ -127,9 +128,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <div class="flex items-center justify-between">
                 <p class="text-sm text-slate-500 font-semibold">Medios de gasto</p>
                 <span class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4.5h18m-1.5 0-.75 13.5H6.75L6 4.5m5.25 3h1.5m-5.25 3h9"/>
-                    </svg>
+                    <?= $icon('credit-card') ?>
                 </span>
             </div>
             <p class="text-base font-semibold text-brand-700 dark:text-info"><?= htmlspecialchars(implode(', ', array_map('ucfirst', $summary['media'])), ENT_QUOTES, 'UTF-8') ?></p>
@@ -154,42 +153,34 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                     <div class="space-y-2">
                         <label for="name" class="text-sm font-semibold text-slate-600">Nombre completo</label>
                         <div class="input-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-5.25 0-7.5 3-7.5 4.5v1.5a.75.75 0 0 0 .75.75h13.5a.75.75 0 0 0 .75-.75v-1.5c0-1.5-2.25-4.5-7.5-4.5Z"/>
-                            </svg>
+                            <?= $icon('user-round') ?>
                             <input id="name" name="name" type="text" required
                                    value="<?= htmlspecialchars($value('name'), ENT_QUOTES, 'UTF-8') ?>"
                                    class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
                         </div>
                     </div>
                     <div class="space-y-2">
-                        <label for="phone" class="text-sm font-semibold text-slate-600">Telefono</label>
+                        <label for="phone" class="text-sm font-semibold text-slate-600">Teléfono</label>
                         <div class="input-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75 9 13.5m0 0 2.25-2.25M9 13.5l-1.5 4.5m4.5-12L21 13.5m0 0-1.5 4.5m1.5-4.5L12 4.5"/>
-                            </svg>
+                            <?= $icon('phone') ?>
                             <input id="phone" name="phone" type="tel" required
                                    value="<?= htmlspecialchars($value('phone'), ENT_QUOTES, 'UTF-8') ?>"
                                    class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
                         </div>
                     </div>
                     <div class="space-y-2">
-                        <label for="occupation" class="text-sm font-semibold text-slate-600">Ocupacion</label>
+                        <label for="occupation" class="text-sm font-semibold text-slate-600">Ocupación</label>
                         <div class="input-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 8.25A2.25 2.25 0 0 1 6.75 6h10.5a2.25 2.25 0 0 1 2.25 2.25v12a.75.75 0 0 1-1.22.58L12 15.75l-6.28 5.08a.75.75 0 0 1-1.22-.58Z"/>
-                            </svg>
+                            <?= $icon('briefcase-business') ?>
                             <input id="occupation" name="occupation" type="text" required
                                    value="<?= htmlspecialchars($value('occupation'), ENT_QUOTES, 'UTF-8') ?>"
                                    class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
                         </div>
                     </div>
                     <div class="space-y-2">
-                        <label for="email" class="text-sm font-semibold text-slate-600">Correo electronico</label>
+                        <label for="email" class="text-sm font-semibold text-slate-600">Correo electrónico</label>
                         <div class="input-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6.75v10.5A2.25 2.25 0 0 0 5.25 19.5h13.5A2.25 2.25 0 0 0 21 17.25V6.75m-18 0 9 6 9-6m-18 0A2.25 2.25 0 0 1 5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75"/>
-                            </svg>
+                            <?= $icon('mail') ?>
                             <input id="email" name="email" type="email" required
                                    value="<?= htmlspecialchars($value('email'), ENT_QUOTES, 'UTF-8') ?>"
                                    class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
@@ -267,8 +258,8 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                 </div>
             </section>
 
-            <section class="space-y-4">
-                <h3 class="text-lg font-semibold text-brand-600">Objetivos y limites</h3>
+            <section id="limite" class="space-y-4 scroll-mt-28">
+                <h3 class="text-lg font-semibold text-brand-600">Objetivos y límites</h3>
 
                 <div class="space-y-4">
                     <select name="goal_type" data-goal-select required

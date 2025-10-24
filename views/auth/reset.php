@@ -1,13 +1,22 @@
 <?php
 /** @var string $csrfToken */
 /** @var string $token */
+
+if (!function_exists('__lucide_icon_helper')) {
+    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
+}
+
+$icon = fn(string $name, string $classes = 'h-4 w-4'): string => __lucide_icon_helper($name, $classes);
 ?>
 <section class="space-y-8">
     <header class="space-y-3">
-        <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Nueva contrasena</p>
+        <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Nueva contraseña</p>
         <h1 class="text-3xl font-semibold text-brand-700">Protege tu cuenta con una clave renovada</h1>
         <p class="text-slate-500 leading-relaxed">
-            Define una contrasena robusta para mantener tus finanzas seguras y retomar el control sin contratiempos.
+            Define una contraseña robusta para mantener tus finanzas seguras y retomar el control sin contratiempos.
         </p>
     </header>
 
@@ -17,40 +26,34 @@
 
         <div class="space-y-2">
             <label for="reset_password" class="text-sm font-semibold text-slate-600 flex items-center justify-between">
-                <span>Nueva contrasena</span>
+                <span>Nueva contraseña</span>
                 <button type="button" data-password-toggle="reset_password" class="text-xs text-brand-600 font-semibold hover:underline">Mostrar</button>
             </label>
             <div class="input-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 10.5V6.75A4.5 4.5 0 0 0 12 2.25 4.5 4.5 0 0 0 7.5 6.75V10.5m-2.25 0H18.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 20.25v-7.5a2.25 2.25 0 0 1 2.25-2.25Z"/>
-                </svg>
+                <?= $icon('lock') ?>
                 <input id="reset_password" name="password" type="password" required minlength="8"
                        class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
-                       placeholder="Crea una contrasena segura">
+                       placeholder="Crea una contraseña segura">
             </div>
             <p class="text-xs text-slate-400">Debe contener al menos una mayuscula, un numero y un caracter especial.</p>
         </div>
 
         <div class="space-y-2">
             <label for="reset_password_confirmation" class="text-sm font-semibold text-slate-600 flex items-center justify-between">
-                <span>Confirmar contrasena</span>
+                <span>Confirmar contraseña</span>
                 <button type="button" data-password-toggle="reset_password_confirmation" class="text-xs text-brand-600 font-semibold hover:underline">Mostrar</button>
             </label>
             <div class="input-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 10.5V6.75A4.5 4.5 0 0 0 12 2.25 4.5 4.5 0 0 0 7.5 6.75V10.5m-2.25 0H18.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 20.25v-7.5a2.25 2.25 0 0 1 2.25-2.25Z"/>
-                </svg>
+                <?= $icon('lock') ?>
                 <input id="reset_password_confirmation" name="password_confirmation" type="password" required minlength="8"
                        class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
-                       placeholder="Repite tu contrasena">
+                       placeholder="Repite tu contraseña">
             </div>
         </div>
 
         <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-600 text-white font-semibold px-6 py-3 shadow-floating hover:bg-brand-700 transition transition-press">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 12.75l6 6 9-13.5"/>
-            </svg>
-            Actualizar contrasena
+            <?= $icon('shield-check', 'h-5 w-5') ?>
+            Actualizar contraseña
         </button>
     </form>
 

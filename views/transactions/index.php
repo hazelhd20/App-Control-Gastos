@@ -10,6 +10,16 @@
 /** @var string $csrfToken */
 
 $old ??= [];
+
+if (!function_exists('__lucide_icon_helper')) {
+    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
+}
+
+$lucideIcon = fn(string $name, string $classes = 'h-4 w-4'): string => __lucide_icon_helper($name, $classes);
+
 $currency = htmlspecialchars($profile['currency'], ENT_QUOTES, 'UTF-8');
 $limitUsage = $summary['limit'] > 0 ? min(100, $summary['limit_usage']) : 0;
 $overLimit = $summary['over_limit'] ?? false;
@@ -56,22 +66,22 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
 
     <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
         <div class="flex items-center justify-between">
-            <p class="text-sm font-semibold text-slate-600">Uso del limite mensual de gastos</p>
+            <p class="text-sm font-semibold text-slate-600">Uso del límite mensual de gastos</p>
             <span class="text-sm font-semibold <?= $overLimit ? 'text-danger' : 'text-brand-600' ?>">
                 <?= $limitUsage ?>%
             </span>
         </div>
-        <div class="h-3 rounded-full bg-slate-100 overflow-hidden">
+        <div class="h-3 rounded-full bg-slate-100 overflow-hidden" role="progressbar" aria-valuenow="<?= $limitUsage ?>" aria-valuemin="0" aria-valuemax="100" aria-label="Uso del límite mensual">
             <div class="h-full rounded-full <?= $overLimit ? 'bg-danger' : 'bg-brand-600' ?>" style="width: <?= $limitUsage ?>%;"></div>
         </div>
         <div class="flex items-center justify-between text-xs text-slate-500">
-            <span>Limite definido: <?= number_format($summary['limit'], 2) ?> <?= $currency ?></span>
-            <span><?= $overLimit ? 'Atencion: excediste tu limite.' : 'Aun estas dentro de tu limite.' ?></span>
+            <span>Límite definido: <?= number_format($summary['limit'], 2) ?> <?= $currency ?></span>
+            <span><?= $overLimit ? 'Atención: excediste tu límite.' : 'Aún estás dentro de tu límite.' ?></span>
         </div>
     </section>
 
     <section class="space-y-6">
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+        <article id="registro" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6 scroll-mt-24">
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold text-brand-700">Registrar movimiento</h2>
                 <span class="text-xs font-semibold text-brand-500 bg-brand-100 px-3 py-1 rounded-full">Nuevo</span>
@@ -80,21 +90,48 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
             <form action="/App-Control-Gastos/public/transacciones" method="POST" class="space-y-5">
                 <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
 
-                <div class="grid grid-cols-2 gap-3 text-sm font-semibold text-slate-600">
-                    <label class="flex items-center gap-2 px-3 py-2 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-200 transition">
-                        <input type="radio" name="type" value="expense" <?= $oldValue('type', 'expense') === 'expense' ? 'checked' : '' ?>>
-                        Gasto
-                    </label>
-                    <label class="flex items-center gap-2 px-3 py-2 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-200 transition">
-                        <input type="radio" name="type" value="income" <?= $oldValue('type') === 'income' ? 'checked' : '' ?>>
-                        Ingreso
-                    </label>
+                <?php
+                $selectedType = $oldValue('type', 'expense');
+                $expenseActive = $selectedType === 'expense';
+                $incomeActive = $selectedType === 'income';
+                $expenseClasses = $expenseActive
+                    ? 'border-brand-300 bg-brand-50/80 text-brand-700 shadow-sm ring-1 ring-brand-200'
+                    : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-brand-200 hover:text-brand-600';
+                $incomeClasses = $incomeActive
+                    ? 'border-accent-400/60 bg-accent-100 text-brand-700 shadow-sm ring-1 ring-accent-400/50'
+                    : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-brand-200 hover:text-brand-600';
+                ?>
+
+                <div class="space-y-2">
+                    <div class="grid gap-3 sm:grid-cols-2 text-sm font-semibold" role="radiogroup" aria-label="Tipo de movimiento">
+                        <label class="flex items-start gap-3 px-4 py-3 rounded-2xl border transition focus-within:ring-2 focus-within:ring-brand-200 <?= $expenseClasses ?>">
+                            <input id="type_expense" class="sr-only" type="radio" name="type" value="expense" <?= $expenseActive ? 'checked' : '' ?>>
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-600">
+                                <?= $lucideIcon('minus', 'h-5 w-5') ?>
+                            </span>
+                            <span class="flex flex-col gap-1">
+                                <span>Gasto</span>
+                                <span class="text-xs font-normal text-slate-400">Pagos, compras o egresos del periodo.</span>
+                            </span>
+                        </label>
+                        <label class="flex items-start gap-3 px-4 py-3 rounded-2xl border transition focus-within:ring-2 focus-within:ring-brand-200 <?= $incomeClasses ?>">
+                            <input id="type_income" class="sr-only" type="radio" name="type" value="income" <?= $incomeActive ? 'checked' : '' ?>>
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-accent-100 text-brand-600">
+                                <?= $lucideIcon('plus', 'h-5 w-5') ?>
+                            </span>
+                            <span class="flex flex-col gap-1">
+                                <span>Ingreso</span>
+                                <span class="text-xs font-normal text-slate-400">Dinero que suma a tu balance disponible.</span>
+                            </span>
+                        </label>
+                    </div>
+                    <p class="text-xs text-slate-400">Selecciona qué tipo de movimiento deseas registrar.</p>
                 </div>
 
                 <div class="space-y-2">
-                    <label class="text-sm font-semibold text-slate-600">Categoria</label>
+                    <label class="text-sm font-semibold text-slate-600">Categoría</label>
                     <select name="category" data-category-select class="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20">
-                        <option value="">Selecciona una categoria</option>
+                        <option value="">Selecciona una categoría</option>
                         <optgroup label="Gastos">
                             <?php foreach ($expenseCategories as $category): ?>
                                 <?php $name = htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8'); ?>
@@ -108,11 +145,11 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                             <?php endforeach; ?>
                         </optgroup>
                     </select>
-                    <p class="text-xs text-slate-400">?No encuentras tu categoria? Ingresa una nueva abajo.</p>
+                    <p class="text-xs text-slate-400">¿No encuentras tu categoría? Ingresa una nueva abajo.</p>
                 </div>
 
                 <div class="space-y-2">
-                    <label for="category_new" class="text-sm font-semibold text-slate-600">Nueva categoria (opcional)</label>
+                    <label for="category_new" class="text-sm font-semibold text-slate-600">Nueva categoría (opcional)</label>
                     <input id="category_new" name="category_new" type="text"
                            value="<?= htmlspecialchars($oldValue('category_new'), ENT_QUOTES, 'UTF-8') ?>"
                            class="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20">
@@ -127,10 +164,10 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                                class="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20">
                     </div>
                     <div class="space-y-2">
-                        <label for="payment_method" class="text-sm font-semibold text-slate-600">Metodo de pago</label>
+                        <label for="payment_method" class="text-sm font-semibold text-slate-600">Método de pago</label>
                         <select id="payment_method" name="payment_method"
                                 class="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20">
-                            <option value="">Selecciona una opcion</option>
+                            <option value="">Selecciona una opción</option>
                             <?php foreach ($paymentMethods as $method): ?>
                                 <option value="<?= $method ?>" <?= $oldValue('payment_method') === $method ? 'selected' : '' ?>>
                                     <?= ucfirst($method) ?>
@@ -149,7 +186,7 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                                class="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20">
                     </div>
                     <div class="space-y-2 md:col-span-1">
-                        <label for="description" class="text-sm font-semibold text-slate-600">Descripcion</label>
+                        <label for="description" class="text-sm font-semibold text-slate-600">Descripción</label>
                         <input id="description" name="description" type="text"
                                value="<?= htmlspecialchars($oldValue('description'), ENT_QUOTES, 'UTF-8') ?>"
                                maxlength="255"
@@ -184,14 +221,14 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                 </select>
             </div>
             <div class="space-y-1">
-                <label for="filter_category" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Categoria</label>
+                <label for="filter_category" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Categoría</label>
                 <input id="filter_category" name="category" type="text"
                        value="<?= htmlspecialchars($filters['category'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                        placeholder="Ej. Transporte"
                        class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20">
             </div>
             <div class="space-y-1">
-                <label for="filter_method" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Metodo</label>
+                <label for="filter_method" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Método</label>
                 <select id="filter_method" name="payment_method"
                         class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20">
                     <option value="">Cualquiera</option>
@@ -215,9 +252,9 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                 <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
                     <tr>
                         <th class="px-4 py-3 text-left">Fecha</th>
-                        <th class="px-4 py-3 text-left">Categoria</th>
-                        <th class="px-4 py-3 text-left">Descripcion</th>
-                        <th class="px-4 py-3 text-center">Metodo</th>
+                        <th class="px-4 py-3 text-left">Categoría</th>
+                        <th class="px-4 py-3 text-left">Descripción</th>
+                        <th class="px-4 py-3 text-center">Método</th>
                         <th class="px-4 py-3 text-right">Monto</th>
                         <th class="px-4 py-3"></th>
                     </tr>
@@ -225,7 +262,26 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                 <tbody class="divide-y divide-slate-100">
                     <?php if (empty($transactions)): ?>
                         <tr>
-                            <td colspan="6" class="px-4 py-6 text-center text-slate-400">No hay movimientos para los filtros seleccionados.</td>
+                            <td colspan="6" class="px-4 py-10">
+                                <div class="flex flex-col items-center justify-center gap-4 text-center">
+                                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-brand-500">
+                                        <?= $lucideIcon('inbox', 'h-6 w-6') ?>
+                                    </span>
+                                    <div class="space-y-1">
+                                        <p class="text-sm font-semibold text-slate-600">No encontramos movimientos con los filtros aplicados.</p>
+                                        <p class="text-xs text-slate-400">Registra un nuevo ingreso o gasto, o intenta limpiar los filtros.</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row gap-3">
+                                        <a class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-brand-700 transition" href="#registro">
+                                            <?= $lucideIcon('plus-circle', 'h-4 w-4') ?>
+                                            Registrar movimiento
+                                        </a>
+                                        <a class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-500 hover:border-brand-200 hover:text-brand-600 transition" href="/App-Control-Gastos/public/transacciones">
+                                            Quitar filtros
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     <?php else: ?>
                         <?php foreach ($transactions as $transaction): ?>
@@ -238,13 +294,11 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                                     <?= $transaction['type'] === 'income' ? '+' : '-' ?><?= number_format($transaction['amount'], 2) ?> <?= $currency ?>
                                 </td>
                                 <td class="px-4 py-3 text-right">
-                                    <form action="/App-Control-Gastos/public/transacciones/eliminar" method="POST" onsubmit="return confirm('?Deseas eliminar este registro?');">
+                                    <form action="/App-Control-Gastos/public/transacciones/eliminar" method="POST" onsubmit="return confirm('¿Deseas eliminar este registro?');">
                                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
                                         <input type="hidden" name="transaction_id" value="<?= (int) $transaction['id'] ?>">
                                         <button class="inline-flex items-center gap-1 text-xs font-semibold text-danger hover:underline" aria-label="Eliminar registro">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7.5h12M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5m-7.5 0h10.5l-.75 12.75A1.5 1.5 0 0 1 15.75 21h-7.5a1.5 1.5 0 0 1-1.5-1.5L6 7.5Z"/>
-                                            </svg>
+                                            <?= $lucideIcon('trash-2', 'h-3.5 w-3.5') ?>
                                             Eliminar
                                         </button>
                                     </form>

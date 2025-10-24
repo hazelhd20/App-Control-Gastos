@@ -5,10 +5,17 @@
         </div>
         <div class="flex items-center gap-4">
             <span class="font-semibold text-brand-600 dark:text-info">Soporte directo:</span>
+<?php if (!function_exists('__lucide_icon_helper')): ?>
+    <?php
+    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
+    ?>
+<?php endif; ?>
+
             <a href="mailto:soporte@controlgastos.local" class="inline-flex items-center gap-2 hover:text-brand-600 dark:hover:text-info transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V6.75l9.75 6.375L21.75 6.75Zm0 0L12 13.125 2.25 6.75"/>
-                </svg>
+                <?= __lucide_icon_helper('mail', 'h-4 w-4') ?>
                 soporte@controlgastos.local
             </a>
         </div>

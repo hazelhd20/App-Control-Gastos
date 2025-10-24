@@ -75,9 +75,11 @@ $pageTitle = $title ?? 'Control de Gastos';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="/App-Control-Gastos/public/assets/css/app.css">
+    <script defer src="https://unpkg.com/lucide@latest"></script>
     <script defer src="/App-Control-Gastos/public/assets/js/app.js"></script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
+    <a href="#main-content" class="skip-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400">Saltar al contenido principal</a>
     <div class="app-grid bg-transparent" data-app-grid>
         <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
@@ -85,10 +87,8 @@ $pageTitle = $title ?? 'Control de Gastos';
             <header class="sticky top-0 z-30 border-b border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
                 <div class="px-5 lg:px-10 py-4 flex items-center gap-4 justify-between">
                     <div class="flex items-center gap-3">
-                        <button class="lg:hidden inline-flex items-center justify-center rounded-full border border-slate-200/80 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 px-3 py-2 shadow-sm hover:border-brand-300 transition" data-mobile-nav aria-label="Abrir navegacion">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
-                            </svg>
+                        <button class="lg:hidden inline-flex items-center justify-center rounded-full border border-slate-200/80 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 px-3 py-2 shadow-sm hover:border-brand-300 transition" data-mobile-nav aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir navegación">
+                            <span class="h-5 w-5 text-slate-600 dark:text-slate-200" data-lucide="menu" aria-hidden="true"></span>
                         </button>
                         <div>
                             <p class="text-xs uppercase tracking-[0.35em] text-slate-400 dark:text-slate-500 font-semibold">Panel</p>
@@ -100,25 +100,21 @@ $pageTitle = $title ?? 'Control de Gastos';
 
                     <div class="hidden md:flex items-center gap-3 flex-1">
                         <div class="relative flex-1 max-w-md">
-                            <input type="search" placeholder="Buscar movimientos, categorias o reportes..." class="w-full rounded-full border border-slate-200/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-900/80 px-5 py-3 pl-12 text-sm focus:border-brand-300 focus:ring focus:ring-info/20 transition" aria-label="Buscar en la aplicacion">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.65 6.65a7.5 7.5 0 0 0 10 10Z"/>
-                            </svg>
+                            <input type="search" placeholder="Buscar movimientos, categorías o reportes..." class="w-full rounded-full border border-slate-200/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-900/80 px-5 py-3 pl-12 text-sm focus:border-brand-300 focus:ring focus:ring-info/20 transition" aria-label="Buscar en la aplicación">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" data-lucide="search" aria-hidden="true"></span>
                         </div>
                         <a href="/App-Control-Gastos/public/transacciones" class="hidden xl:inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-4 py-3 shadow-floating transition hover:bg-brand-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
-                            </svg>
+                            <span class="h-4 w-4 text-white" data-lucide="plus" aria-hidden="true"></span>
                             Nuevo movimiento
                         </a>
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <button class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-700/70 bg-white/90 dark:bg-slate-900/80 px-4 py-2 text-sm font-semibold transition hover:border-brand-200 hover:text-brand-600 dark:hover:border-info/40 dark:hover:text-info/90" data-theme-toggle type="button" aria-label="Alternar modo oscuro">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1.5m6.36.64-1.06 1.06M21 12h-1.5m-.64 6.36-1.06-1.06M12 21v-1.5m-6.36-.64 1.06-1.06M4.5 12H3m.64-6.36 1.06 1.06M12 8.25A3.75 3.75 0 1 0 15.75 12 3.75 3.75 0 0 0 12 8.25Z"/>
-                            </svg>
-                            <span data-theme-toggle-label>Modo oscuro</span>
+                        <button type="button" class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-700/70 bg-white/90 dark:bg-slate-900/80 px-4 py-2 text-sm font-semibold transition hover:border-brand-200 hover:text-brand-600 dark:hover:border-info/40 dark:hover:text-info/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300" data-theme-toggle data-theme-state="light" aria-label="Cambiar a modo oscuro" aria-pressed="false">
+                            <span class="theme-icon theme-icon--light h-4 w-4 text-slate-500 dark:text-slate-300 transition-transform duration-300" data-lucide="sun" aria-hidden="true"></span>
+                            <span class="theme-icon theme-icon--dark hidden h-4 w-4 text-slate-500 dark:text-slate-300 transition-transform duration-300" data-lucide="moon-star" aria-hidden="true"></span>
+                            <span class="hidden sm:inline-block" data-theme-toggle-label>Modo oscuro</span>
+                            <span class="sr-only sm:hidden" data-theme-toggle-label>Modo oscuro</span>
                         </button>
                         <?php if ($auth->check()): ?>
                             <div class="hidden sm:flex flex-col text-right">
@@ -128,7 +124,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                             <form action="/App-Control-Gastos/public/logout" method="POST" class="hidden sm:block">
                                 <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
                                 <button class="rounded-full bg-white/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-700/60 px-4 py-2 text-sm font-semibold text-brand-600 dark:text-info hover:border-brand-300 hover:text-brand-700 transition">
-                                    Cerrar sesion
+                                    Cerrar sesión
                                 </button>
                             </form>
                             <div class="h-10 w-10 shrink-0 rounded-full bg-brand-600 text-white font-semibold flex items-center justify-center shadow-floating avatar-ring">
@@ -145,23 +141,41 @@ $pageTitle = $title ?? 'Control de Gastos';
 
             <?php include __DIR__ . '/../partials/mobile-menu.php'; ?>
 
-            <main class="flex-1 w-full px-5 sm:px-8 lg:px-12 py-10">
+            <main id="main-content" class="flex-1 w-full px-5 sm:px-8 lg:px-12 py-10" tabindex="-1">
                 <div class="max-w-7xl mx-auto w-full space-y-6">
                     <?php if ($flashSuccess): ?>
-                        <div class="rounded-3xl border border-success/30 bg-emerald-50 text-brand-700 px-6 py-4 shadow-soft toast">
-                            <?= htmlspecialchars($flashSuccess, ENT_QUOTES, 'UTF-8') ?>
+                        <div class="ui-toast ui-toast--success" role="alert" aria-live="assertive" data-toast>
+                            <div class="ui-toast__body">
+                                <span class="ui-toast__icon" aria-hidden="true" data-lucide="check-circle-2"></span>
+                                <span class="ui-toast__message"><?= htmlspecialchars($flashSuccess, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
+                                <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
+                            </button>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($flashError): ?>
-                        <div class="rounded-3xl border border-danger/40 bg-rose-50 text-danger px-6 py-4 shadow-soft toast">
-                            <?= htmlspecialchars($flashError, ENT_QUOTES, 'UTF-8') ?>
+                        <div class="ui-toast ui-toast--danger" role="alert" aria-live="assertive" data-toast>
+                            <div class="ui-toast__body">
+                                <span class="ui-toast__icon" aria-hidden="true" data-lucide="alert-circle"></span>
+                                <span class="ui-toast__message"><?= htmlspecialchars($flashError, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
+                                <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
+                            </button>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($flashInfo): ?>
-                        <div class="rounded-3xl border border-info/30 bg-sky-50 text-brand-600 px-6 py-4 shadow-soft toast">
-                            <?= htmlspecialchars($flashInfo, ENT_QUOTES, 'UTF-8') ?>
+                        <div class="ui-toast ui-toast--info" role="status" aria-live="polite" data-toast>
+                            <div class="ui-toast__body">
+                                <span class="ui-toast__icon" aria-hidden="true" data-lucide="info"></span>
+                                <span class="ui-toast__message"><?= htmlspecialchars($flashInfo, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
+                                <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
+                            </button>
                         </div>
                     <?php endif; ?>
 

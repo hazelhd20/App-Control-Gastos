@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    renderIcons();
     bindPasswordToggles();
     bindMobileNavigation();
     bindGoalDynamicFields();
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initSidebarToggle();
     highlightActiveNav();
+    bindToastDismiss();
 });
 
 function bindPasswordToggles() {
@@ -38,20 +40,40 @@ function bindMobileNavigation() {
         return;
     }
 
+    const setMenuVisibility = (shouldShow, options = {}) => {
+        const { skipFocusReset = false } = options;
+        const isHidden = !shouldShow;
+        menu.classList.toggle('hidden', isHidden);
+        menu.setAttribute('aria-hidden', String(isHidden));
+        trigger.setAttribute('aria-expanded', String(!isHidden));
+
+        if (shouldShow) {
+            requestAnimationFrame(() => {
+                const focusable = menu.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                focusable?.focus();
+            });
+        } else if (!skipFocusReset) {
+            trigger.focus();
+        }
+    };
+
+    setMenuVisibility(false, { skipFocusReset: true });
+
     trigger.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
+        const willOpen = menu.classList.contains('hidden');
+        setMenuVisibility(willOpen);
     });
 
     menu.querySelectorAll('[data-mobile-close]').forEach((button) => {
         button.addEventListener('click', () => {
-            menu.classList.add('hidden');
+            setMenuVisibility(false);
         });
     });
 
     const overlay = menu.querySelector('[data-mobile-overlay]');
     if (overlay) {
         overlay.addEventListener('click', () => {
-            menu.classList.add('hidden');
+            setMenuVisibility(false);
         });
     }
 }
@@ -175,13 +197,22 @@ function initThemeToggle() {
 
     const applyTheme = (theme) => {
         const resolved = theme === 'dark' ? 'dark' : 'light';
+        const nextLabel = resolved === 'dark' ? 'Modo claro' : 'Modo oscuro';
+
         root.dataset.theme = resolved;
         root.classList.toggle('dark', resolved === 'dark');
         toggle.setAttribute('data-theme-state', resolved);
-        toggle.querySelector('[data-theme-toggle-label]').textContent = resolved === 'dark' ? 'Modo claro' : 'Modo oscuro';
-        const iconTarget = toggle.querySelector('svg');
-        if (iconTarget) {
-            iconTarget.style.transform = resolved === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+        toggle.setAttribute('aria-pressed', resolved === 'dark' ? 'true' : 'false');
+        toggle.setAttribute('aria-label', resolved === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+        toggle.querySelectorAll('[data-theme-toggle-label]').forEach((label) => {
+            label.textContent = nextLabel;
+        });
+
+        const sunIcon = toggle.querySelector('.theme-icon--light');
+        const moonIcon = toggle.querySelector('.theme-icon--dark');
+        if (sunIcon && moonIcon) {
+            sunIcon.classList.toggle('hidden', resolved === 'dark');
+            moonIcon.classList.toggle('hidden', resolved !== 'dark');
         }
     };
 
@@ -211,7 +242,7 @@ function initSidebarToggle() {
         sidebar.classList.toggle('is-collapsed', isCollapsed);
         appGrid.classList.toggle('app-grid--collapsed', isCollapsed);
         toggle.setAttribute('aria-expanded', String(!isCollapsed));
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menu' : 'Colapsar menu';
+        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
         const icon = toggle.querySelector('svg');
         if (icon) {
             icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
@@ -249,4 +280,31 @@ function highlightActiveNav() {
             }
         }
     });
+}
+
+function bindToastDismiss() {
+    document.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-dismiss-toast]');
+        if (!button) {
+            return;
+        }
+
+        const toast = button.closest('[data-toast]');
+        if (!toast) {
+            return;
+        }
+
+        toast.classList.add('ui-toast--closing');
+        setTimeout(() => {
+            toast.remove();
+        }, 180);
+    });
+}
+
+function renderIcons() {
+    if (typeof lucide === 'undefined' || typeof lucide.createIcons !== 'function') {
+        return;
+    }
+
+    lucide.createIcons();
 }
