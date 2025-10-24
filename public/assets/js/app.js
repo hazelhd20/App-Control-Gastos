@@ -245,6 +245,7 @@ function initSidebarToggle() {
         toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
         // Corrige acento en menú
         toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
+        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
         const icon = toggle.querySelector('svg');
         if (icon) {
             icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';

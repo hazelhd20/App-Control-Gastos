@@ -35,12 +35,7 @@ $alertPalette = [
     'info' => ['border' => 'border-info/40', 'bg' => 'bg-sky-50 dark:bg-sky-900/30', 'text' => 'text-brand-600 dark:text-info', 'accent' => 'bg-info/30'],
 ];
 
-if (!function_exists('lucide_icon')) {
-    function lucide_icon(string $name, string $classes = 'h-4 w-4'): string
-    {
-        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
-    }
-}
+// Helper centralizado en views/partials/icons.php
 ?>
 
 <section class="space-y-12">

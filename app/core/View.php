@@ -19,6 +19,12 @@ class View
             throw new \RuntimeException("Vista {$view} no encontrada");
         }
 
+        // Asegurar helpers compartidos antes de evaluar la vista
+        $sharedHelpers = $this->basePath . '/partials/icons.php';
+        if (is_file($sharedHelpers)) {
+            require_once $sharedHelpers;
+        }
+
         extract($data);
         ob_start();
         require $viewPath;

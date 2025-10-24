@@ -58,7 +58,7 @@ $pageTitle = $title ?? 'Control de Gastos';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="/App-Control-Gastos/public/assets/css/app.css">
-    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="/App-Control-Gastos/public/assets/vendor/lucide.min.js"></script>
     <script defer src="/App-Control-Gastos/public/assets/js/app.js"></script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200 text-slate-900 antialiased">

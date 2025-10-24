@@ -1,12 +1,5 @@
 <?php /** @var string $csrfToken */ ?>
-<?php if (!function_exists('__lucide_icon_helper')): ?>
-    <?php
-    function __lucide_icon_helper(string $name, string $classes = 'h-4 w-4'): string
-    {
-        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
-    }
-    ?>
-<?php endif; ?>
+<?php // Helper centralizado en views/partials/icons.php ?>
 <?php $icon = fn(string $name, string $classes = 'h-4 w-4'): string => __lucide_icon_helper($name, $classes); ?>
 <section class="space-y-10">
     <header class="space-y-3">
