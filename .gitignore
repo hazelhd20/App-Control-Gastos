@@ -1,0 +1,9 @@
+/vendor/
+/storage/cache/*
+/storage/logs/*
+/storage/emails/*
+/.env
+/.idea/
+/.vscode/
+composer.lock
+node_modules/
