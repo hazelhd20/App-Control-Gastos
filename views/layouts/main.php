@@ -148,19 +148,22 @@ $pageTitle = $title ?? 'Control de Gastos';
             <main class="flex-1 w-full px-5 sm:px-8 lg:px-12 py-10">
                 <div class="max-w-7xl mx-auto w-full space-y-6">
                     <?php if ($flashSuccess): ?>
-                        <div class="rounded-3xl border border-success/30 bg-emerald-50 text-brand-700 px-6 py-4 shadow-soft toast">
+                        <div class="rounded-3xl border border-success/30 bg-emerald-50 text-brand-700 px-6 py-4 shadow-soft toast"
+                             role="status" aria-live="polite">
                             <?= htmlspecialchars($flashSuccess, ENT_QUOTES, 'UTF-8') ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($flashError): ?>
-                        <div class="rounded-3xl border border-danger/40 bg-rose-50 text-danger px-6 py-4 shadow-soft toast">
+                        <div class="rounded-3xl border border-danger/40 bg-rose-50 text-danger px-6 py-4 shadow-soft toast"
+                             role="alert" aria-live="assertive">
                             <?= htmlspecialchars($flashError, ENT_QUOTES, 'UTF-8') ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($flashInfo): ?>
-                        <div class="rounded-3xl border border-info/30 bg-sky-50 text-brand-600 px-6 py-4 shadow-soft toast">
+                        <div class="rounded-3xl border border-info/30 bg-sky-50 text-brand-600 px-6 py-4 shadow-soft toast"
+                             role="status" aria-live="polite">
                             <?= htmlspecialchars($flashInfo, ENT_QUOTES, 'UTF-8') ?>
                         </div>
                     <?php endif; ?>
