@@ -228,24 +228,23 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                     <p class="text-sm font-semibold text-slate-600">Medios de gasto</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                         <?php
-                        $mediaIcons = [
-                            'efectivo' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 7.5h15v9h-15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 11.25h15"/>',
-                            'tarjeta' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7.5h18v9H3z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 11.25h18"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 15h3"/>',
-                            'transferencia' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 9H9m0 0L6.75 6.75M9 9 6.75 11.25M19.5 15H15m0 0 2.25-2.25M15 15l2.25 2.25"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 18.75h15"/>',
-                            'otros' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6"/>',
+                        // Estándar de iconos: Lucide
+                        $mediaLucide = [
+                            'efectivo' => 'banknote',
+                            'tarjeta' => 'credit-card',
+                            'transferencia' => 'arrow-left-right',
+                            'otros' => 'plus',
                         ];
                         ?>
                         <?php foreach ($mediaOptions as $media): ?>
                             <?php
                             $label = ucfirst($media === 'otros' ? 'Otros medios' : $media);
-                            $iconPath = $mediaIcons[$media] ?? $mediaIcons['otros'];
+                            $iconName = $mediaLucide[$media] ?? $mediaLucide['otros'];
                             ?>
                             <label class="flex items-center justify-between gap-4 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/90/80 dark:bg-slate-900/60 hover:border-brand-200 transition">
                                 <div class="flex items-center gap-3">
                                     <span class="icon-circle">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <?= $iconPath ?>
-                                        </svg>
+                                        <?= $icon($iconName, 'h-4 w-4') ?>
                                     </span>
                                     <span class="text-slate-600 font-semibold"><?= $label ?></span>
                                 </div>

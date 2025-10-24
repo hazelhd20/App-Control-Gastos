@@ -1,7 +1,13 @@
 <?php
 /** @var string $content */
+include_once __DIR__ . '/../partials/icons.php';
 
 use App\Core\Session;
+
+$headersSent = headers_sent();
+if (!$headersSent) {
+    header('Content-Type: text/html; charset=UTF-8');
+}
 
 $session = $session ?? new Session();
 $flashSuccess = $session->getFlash('success');

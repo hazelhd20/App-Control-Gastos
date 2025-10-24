@@ -35,9 +35,11 @@ $alertPalette = [
     'info' => ['border' => 'border-info/40', 'bg' => 'bg-sky-50 dark:bg-sky-900/30', 'text' => 'text-brand-600 dark:text-info', 'accent' => 'bg-info/30'],
 ];
 
-function lucide_icon(string $name, string $classes = 'h-4 w-4'): string
-{
-    return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+if (!function_exists('lucide_icon')) {
+    function lucide_icon(string $name, string $classes = 'h-4 w-4'): string
+    {
+        return '<span class="' . htmlspecialchars($classes, ENT_QUOTES, 'UTF-8') . '" data-lucide="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>';
+    }
 }
 ?>
 
@@ -280,7 +282,7 @@ function lucide_icon(string $name, string $classes = 'h-4 w-4'): string
             </div>
             <a href="/App-Control-Gastos/public/perfil" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white px-4 py-2 text-xs font-semibold hover:bg-brand-700 transition transition-press">
                 Ajustar límite
-                <?= lucide_icon('arrow-right-left', 'h-4 w-4') ?>
+                <?= lucide_icon('arrow-left-right', 'h-4 w-4') ?>
             </a>
         </article>
     </section>

@@ -243,6 +243,8 @@ function initSidebarToggle() {
         appGrid.classList.toggle('app-grid--collapsed', isCollapsed);
         toggle.setAttribute('aria-expanded', String(!isCollapsed));
         toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
+        // Corrige acento en menú
+        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
         const icon = toggle.querySelector('svg');
         if (icon) {
             icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
