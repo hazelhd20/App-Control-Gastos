@@ -1,7 +1,6 @@
 <?php /** @var string $csrfToken */ ?>
 <section class="space-y-10">
     <header class="space-y-3">
-        <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Bienvenido de nuevo</p>
         <h1 class="text-3xl font-semibold text-brand-700">Accede a tu centro financiero</h1>
         <p class="text-slate-500 leading-relaxed">
             Visualiza tu balance, controla cada categoria y toma decisiones respaldadas por datos claros.
@@ -28,7 +27,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6.75v10.5A2.25 2.25 0 0 0 5.25 19.5h13.5A2.25 2.25 0 0 0 21 17.25V6.75m-18 0 9 6 9-6m-18 0A2.25 2.25 0 0 1 5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75"/>
                 </svg>
                 <input id="email" name="email" type="email" required autocomplete="email"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="usuario@correo.com">
             </div>
         </div>
@@ -46,7 +45,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 10.5V6.75A4.5 4.5 0 0 0 12 2.25 4.5 4.5 0 0 0 7.5 6.75V10.5m-2.25 0H18.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 20.25v-7.5a2.25 2.25 0 0 1 2.25-2.25Z"/>
                 </svg>
                 <input id="password" name="password" type="password" required minlength="8"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="Escribe tu contrasena">
             </div>
         </div>

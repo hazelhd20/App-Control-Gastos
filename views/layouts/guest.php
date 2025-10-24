@@ -67,7 +67,7 @@ $pageTitle = $title ?? 'Control de Gastos';
 
         <div class="relative w-full max-w-6xl bg-white/80 border border-slate-200/60 shadow-[0_40px_80px_-48px_rgba(15,23,42,0.4)] rounded-[2.5rem] overflow-hidden backdrop-blur-xl">
             <div class="grid lg:grid-cols-[1.1fr_1fr] min-h-[620px]">
-                <div class="hidden lg:flex flex-col justify-between p-12 bg-hero-gradient text-white relative">
+                <div class="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white relative">
                     <div class="flex items-center gap-3">
                         <span class="flex h-12 w-12 items-center justify-center rounded-3xl bg-white text-brand-600 text-xl font-semibold shadow-floating">
                             CG

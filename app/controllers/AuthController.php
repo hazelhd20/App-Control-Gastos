@@ -56,7 +56,7 @@ class AuthController extends Controller
             return;
         }
 
-        $this->session->flash('success', '!Bienvenido de nuevo!');
+        $this->session->flash('success', 'Inicio de sesion exitoso.');
         $this->response->redirect('/App-Control-Gastos/public');
     }
 

@@ -280,7 +280,7 @@ $alertPalette = [
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6l4 2"/>
                         </svg>
                     </span>
-                    Programa alertas personalizadas para anticiparte a los picos de gasto en categorias clave.
+                    Activa recordatorios para anticiparte a los picos de gasto.
                 </li>
                 <li class="flex gap-3">
                     <span class="icon-circle shrink-0">
@@ -299,7 +299,7 @@ $alertPalette = [
                     </svg>
                 </a>
                 <a href="/App-Control-Gastos/public/alertas" class="inline-flex items-center gap-2 rounded-full border border-brand-200/70 text-brand-600 px-4 py-2 text-xs font-semibold hover:bg-brand-50 transition">
-                    Configurar alertas
+                    Ver alertas
                 </a>
             </div>
         </article>

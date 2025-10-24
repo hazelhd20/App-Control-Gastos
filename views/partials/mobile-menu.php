@@ -13,29 +13,19 @@ $navItems = [
         'icon' => 'home',
     ],
     [
-        'label' => 'Reportes',
-        'href' => '/App-Control-Gastos/public/reportes',
-        'icon' => 'report',
-    ],
-    [
         'label' => 'Movimientos',
         'href' => '/App-Control-Gastos/public/transacciones',
         'icon' => 'arrows',
     ],
     [
-        'label' => 'Alertas',
-        'href' => '/App-Control-Gastos/public/alertas',
-        'icon' => 'bell',
+        'label' => 'Reportes',
+        'href' => '/App-Control-Gastos/public/reportes',
+        'icon' => 'report',
     ],
     [
         'label' => 'Perfil',
         'href' => '/App-Control-Gastos/public/perfil',
         'icon' => 'user',
-    ],
-    [
-        'label' => 'Configuracion',
-        'href' => '/App-Control-Gastos/public/perfil#preferencias',
-        'icon' => 'settings',
     ],
 ];
 
@@ -47,7 +37,6 @@ function renderMobileIcon(string $icon): string
         'arrows' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 9h6a3 3 0 0 0 0-6h-6m6 0L8.25 4.5M10.5 3 8.25 1.5M19.5 15h-6a3 3 0 0 0 0 6h6m-6 0 2.25-2.25M13.5 21l2.25 2.25"/>',
         'bell' => '<path stroke-linecap="round" stroke-linejoin="round" d="M14.25 18.75a2.25 2.25 0 0 1-4.5 0m9.75-6c0-3.35-2.31-6.15-5.39-6.81a2.36 2.36 0 0 0-4.72 0C6.31 6.6 4 9.4 4 12.75v2.07a2.25 2.25 0 0 1-.66 1.59l-.59.59a.75.75 0 0 0 .53 1.28h17.44a.75.75 0 0 0 .53-1.28l-.59-.59a2.25 2.25 0 0 1-.66-1.59z"/>',
         'user' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-5.25 0-7.5 3-7.5 4.5v1.5a.75.75 0 0 0 .75.75h13.5a.75.75 0 0 0 .75-.75v-1.5c0-1.5-2.25-4.5-7.5-4.5Z"/>',
-        'settings' => '<path stroke-linecap="round" stroke-linejoin="round" d="m15 9 6.75 5.25m-9.45 7.8 2.4-8.1m-8.43 8.61 6.03-6.03M9 9l-6.75 5.25m9.45 7.8-2.4-8.1m8.43 8.61-6.03-6.03"/>',
     ];
 
     $path = $icons[$icon] ?? $icons['home'];

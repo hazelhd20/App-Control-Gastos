@@ -3,12 +3,9 @@
 /** @var array $summary */
 /** @var array $filters */
 /** @var array $transactions */
-/** @var array $distribution */
-/** @var array $methods */
 /** @var array $expenseCategories */
 /** @var array $incomeCategories */
 /** @var array $paymentMethods */
-/** @var array $recent */
 /** @var array $old */
 /** @var string $csrfToken */
 
@@ -22,7 +19,6 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
     return $old[$field] ?? $default;
 };
 
-$expenseDistribution = array_values(array_filter($distribution, static fn ($item) => $item['type'] === 'expense'));
 ?>
 
 <section class="space-y-10" data-limit-alert="<?= $overLimit ? '1' : '0' ?>">
@@ -32,24 +28,24 @@ $expenseDistribution = array_values(array_filter($distribution, static fn ($item
     </header>
 
     <section class="grid gap-6 lg:grid-cols-4">
-        <article class="card-glass rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Ingresos base (perfil)</p>
             <p class="text-3xl font-bold text-brand-600"><?= number_format($summary['base_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingreso mensual y adicional registrados en tu perfil.</p>
         </article>
-        <article class="card-glass rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Ingresos adicionales</p>
             <p class="text-3xl font-bold text-brand-600"><?= number_format($summary['additional_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingresos registrados durante el periodo seleccionado.</p>
         </article>
-        <article class="card-glass rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
             <p class="text-3xl font-bold <?= $overLimit ? 'text-danger' : 'text-brand-600' ?>">
                 <?= number_format($summary['total_expenses'], 2) ?> <?= $currency ?>
             </p>
             <p class="text-xs text-slate-400">Total de egresos registrados este mes.</p>
         </article>
-        <article class="card-glass rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Saldo disponible</p>
             <p class="text-3xl font-bold <?= $summary['available'] < 0 ? 'text-danger' : 'text-brand-600' ?>">
                 <?= number_format($summary['available'], 2) ?> <?= $currency ?>
@@ -74,7 +70,7 @@ $expenseDistribution = array_values(array_filter($distribution, static fn ($item
         </div>
     </section>
 
-    <section class="grid gap-6 lg:grid-cols-2">
+    <section class="space-y-6">
         <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold text-brand-700">Registrar movimiento</h2>
@@ -168,30 +164,6 @@ $expenseDistribution = array_values(array_filter($distribution, static fn ($item
                 </div>
             </form>
         </article>
-
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-semibold text-brand-700">Movimientos recientes</h2>
-                <span class="text-xs font-semibold text-slate-400">Ultimos <?= count($recent) ?> registrados</span>
-            </div>
-            <ul class="space-y-3">
-                <?php if (empty($recent)): ?>
-                    <li class="text-sm text-slate-400">Aun no registras movimientos.</li>
-                <?php else: ?>
-                    <?php foreach ($recent as $item): ?>
-                        <li class="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3">
-                            <div>
-                                <p class="text-sm font-semibold text-slate-600"><?= htmlspecialchars($item['category'], ENT_QUOTES, 'UTF-8') ?></p>
-                                <p class="text-xs text-slate-400"><?= date('d M Y', strtotime($item['happened_on'])) ?> &bull; <?= ucfirst($item['payment_method']) ?></p>
-                            </div>
-                            <span class="text-sm font-semibold <?= $item['type'] === 'income' ? 'text-brand-600' : 'text-danger' ?>">
-                                <?= $item['type'] === 'income' ? '+' : '-' ?><?= number_format($item['amount'], 2) ?> <?= $currency ?>
-                            </span>
-                        </li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
-        </article>
     </section>
 
     <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
@@ -230,10 +202,10 @@ $expenseDistribution = array_values(array_filter($distribution, static fn ($item
             </div>
             <div class="flex gap-3">
                 <button type="submit" class="flex-1 px-4 py-2 rounded-xl bg-brand-600 text-white text-sm font-semibold shadow hover:bg-brand-700 transition">
-                    Filtrar
+                    Aplicar filtros
                 </button>
                 <a href="/App-Control-Gastos/public/transacciones" class="px-4 py-2 rounded-xl border border-slate-200 text-sm font-semibold text-slate-500 hover:border-brand-200 hover:text-brand-600 transition">
-                    Limpiar
+                    Borrar filtros
                 </a>
             </div>
         </form>
@@ -266,10 +238,15 @@ $expenseDistribution = array_values(array_filter($distribution, static fn ($item
                                     <?= $transaction['type'] === 'income' ? '+' : '-' ?><?= number_format($transaction['amount'], 2) ?> <?= $currency ?>
                                 </td>
                                 <td class="px-4 py-3 text-right">
-                                    <form action="/App-Control-Gastos/public/transacciones/eliminar" method="POST" onsubmit="return confirm('Eliminar este movimiento?');">
+                                    <form action="/App-Control-Gastos/public/transacciones/eliminar" method="POST" onsubmit="return confirm('?Deseas eliminar este registro?');">
                                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
                                         <input type="hidden" name="transaction_id" value="<?= (int) $transaction['id'] ?>">
-                                        <button class="text-xs font-semibold text-danger hover:underline">Eliminar</button>
+                                        <button class="inline-flex items-center gap-1 text-xs font-semibold text-danger hover:underline" aria-label="Eliminar registro">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7.5h12M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5m-7.5 0h10.5l-.75 12.75A1.5 1.5 0 0 1 15.75 21h-7.5a1.5 1.5 0 0 1-1.5-1.5L6 7.5Z"/>
+                                            </svg>
+                                            Eliminar
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -280,43 +257,5 @@ $expenseDistribution = array_values(array_filter($distribution, static fn ($item
         </div>
     </section>
 
-    <section class="grid gap-6 lg:grid-cols-2">
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-            <h2 class="text-xl font-semibold text-brand-700">Distribucion de gastos por categoria</h2>
-            <?php if (empty($expenseDistribution)): ?>
-                <p class="text-sm text-slate-400">Aun no hay datos suficientes para mostrar la distribucion.</p>
-            <?php else: ?>
-                <ul class="space-y-3">
-                    <?php foreach ($expenseDistribution as $item): ?>
-                        <li class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-semibold text-slate-600"><?= htmlspecialchars($item['category'], ENT_QUOTES, 'UTF-8') ?></p>
-                                <p class="text-xs text-slate-400"><?= number_format(($item['total'] / max($summary['total_expenses'], 1)) * 100, 1) ?>% del total</p>
-                            </div>
-                            <span class="text-sm font-semibold text-danger">
-                                -<?= number_format($item['total'], 2) ?> <?= $currency ?>
-                            </span>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-        </article>
-
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-            <h2 class="text-xl font-semibold text-brand-700">Gastos por metodo de pago</h2>
-            <?php if (empty($methods)): ?>
-                <p class="text-sm text-slate-400">Registra movimientos para conocer la distribucion por metodo.</p>
-            <?php else: ?>
-                <ul class="space-y-3">
-                    <?php foreach ($methods as $method): ?>
-                        <li class="flex items-center justify-between">
-                            <span class="text-sm font-semibold text-slate-600"><?= ucfirst($method['payment_method']) ?></span>
-                            <span class="text-sm font-semibold text-danger">-<?= number_format($method['total'], 2) ?> <?= $currency ?></span>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-        </article>
-    </section>
 </section>
 

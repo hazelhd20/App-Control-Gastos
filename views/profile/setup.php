@@ -21,7 +21,7 @@ $selectedMedia = $old['spending_media'] ?? [];
     <form action="/App-Control-Gastos/public/perfil/configuracion-inicial" method="POST" class="grid gap-10">
         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
 
-        <section class="card-glass rounded-3xl p-8 space-y-6">
+        <section class="surface-card rounded-3xl p-8 space-y-6">
             <h2 class="text-xl font-semibold text-brand-700">Ingresos y moneda</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -61,7 +61,7 @@ $selectedMedia = $old['spending_media'] ?? [];
             </div>
         </section>
 
-        <section class="card-glass rounded-3xl p-8 space-y-6">
+        <section class="surface-card rounded-3xl p-8 space-y-6">
             <h2 class="text-xl font-semibold text-brand-700">Medios de gasto</h2>
             <p class="text-slate-500 text-sm">Selecciona los metodos que utilizas con frecuencia. Esto nos ayudara a segmentar tus reportes.</p>
 
@@ -83,7 +83,7 @@ $selectedMedia = $old['spending_media'] ?? [];
             </div>
         </section>
 
-        <section class="card-glass rounded-3xl p-8 space-y-6">
+        <section class="surface-card rounded-3xl p-8 space-y-6">
             <div class="flex items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-semibold text-brand-700">Objetivo principal</h2>
@@ -133,7 +133,7 @@ $selectedMedia = $old['spending_media'] ?? [];
             </div>
         </section>
 
-        <section class="card-glass rounded-3xl p-8 space-y-6">
+        <section class="surface-card rounded-3xl p-8 space-y-6">
             <h2 class="text-xl font-semibold text-brand-700">Limite mensual de gastos</h2>
             <p class="text-slate-500 text-sm">Ajusta un tope para recibir alertas cuando estes cerca de excederte.</p>
 
