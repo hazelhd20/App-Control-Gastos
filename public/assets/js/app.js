@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     bindAutoLimitCalculation();
     bindTransactionCategoryFiltering();
     triggerLimitAlert();
+    initThemeToggle();
+    initSidebarToggle();
+    highlightActiveNav();
 });
 
 function bindPasswordToggles() {
@@ -38,6 +41,19 @@ function bindMobileNavigation() {
     trigger.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
+
+    menu.querySelectorAll('[data-mobile-close]').forEach((button) => {
+        button.addEventListener('click', () => {
+            menu.classList.add('hidden');
+        });
+    });
+
+    const overlay = menu.querySelector('[data-mobile-overlay]');
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            menu.classList.add('hidden');
+        });
+    }
 }
 
 function bindGoalDynamicFields() {
@@ -146,4 +162,83 @@ function playLimitBeep() {
     } catch (error) {
         console.warn('No fue posible reproducir la alerta sonora.', error);
     }
+}
+
+function initThemeToggle() {
+    const toggle = document.querySelector('[data-theme-toggle]');
+    if (!toggle) {
+        return;
+    }
+
+    const root = document.documentElement;
+    const storageKey = 'acg-theme';
+
+    const applyTheme = (theme) => {
+        const resolved = theme === 'dark' ? 'dark' : 'light';
+        root.dataset.theme = resolved;
+        root.classList.toggle('dark', resolved === 'dark');
+        toggle.setAttribute('data-theme-state', resolved);
+        toggle.querySelector('[data-theme-toggle-label]').textContent = resolved === 'dark' ? 'Modo claro' : 'Modo oscuro';
+        const iconTarget = toggle.querySelector('svg');
+        if (iconTarget) {
+            iconTarget.style.transform = resolved === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+    };
+
+    const storedTheme = localStorage.getItem(storageKey);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(storedTheme ?? (prefersDark ? 'dark' : 'light'));
+
+    toggle.addEventListener('click', () => {
+        const current = root.dataset.theme === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(storageKey, next);
+        applyTheme(next);
+    });
+}
+
+function initSidebarToggle() {
+    const toggle = document.querySelector('[data-sidebar-toggle]');
+    const sidebar = document.querySelector('[data-app-sidebar]');
+    const appGrid = document.querySelector('[data-app-grid]');
+
+    if (!toggle || !sidebar || !appGrid) {
+        return;
+    }
+
+    const storageKey = 'acg-sidebar';
+    const applyState = (isCollapsed) => {
+        sidebar.classList.toggle('is-collapsed', isCollapsed);
+        appGrid.classList.toggle('app-grid--collapsed', isCollapsed);
+        toggle.setAttribute('aria-expanded', String(!isCollapsed));
+        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menu' : 'Colapsar menu';
+        const icon = toggle.querySelector('svg');
+        if (icon) {
+            icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+    };
+
+    const storedState = localStorage.getItem(storageKey) === 'collapsed';
+    applyState(storedState);
+
+    toggle.addEventListener('click', () => {
+        const willCollapse = !sidebar.classList.contains('is-collapsed');
+        localStorage.setItem(storageKey, willCollapse ? 'collapsed' : 'expanded');
+        applyState(willCollapse);
+    });
+}
+
+function highlightActiveNav() {
+    const currentPath = window.location.pathname.replace(/\/+$/, '');
+    document.querySelectorAll('[data-nav-link]').forEach((link) => {
+        const href = link.getAttribute('href') ?? '';
+        const normalized = href.replace(/\/+$/, '');
+        if (normalized === currentPath) {
+            link.classList.add('is-active');
+            const parent = link.closest('[data-nav-pill]');
+            if (parent) {
+                parent.classList.add('is-active');
+            }
+        }
+    });
 }

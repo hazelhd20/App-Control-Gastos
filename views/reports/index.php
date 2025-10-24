@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** @var array $profile */
 /** @var array $overview */
 /** @var array $categoryBreakdown */
@@ -44,31 +44,42 @@ $exportQuery = http_build_query([
 ]);
 ?>
 
-<section class="space-y-10">
+<section class="space-y-12">
     <header class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div>
-            <h1 class="text-3xl font-semibold text-primary-700">Reportes y estadisticas</h1>
-            <p class="text-slate-500">Analiza tu comportamiento financiero con filtros y exportaciones personalizadas.</p>
+        <div class="space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Analitica</p>
+            <h1 class="text-3xl font-semibold text-brand-700">Reportes y estadisticas</h1>
+            <p class="text-slate-500 leading-relaxed">Analiza tu comportamiento financiero con filtros inteligentes y exportaciones personalizadas.</p>
         </div>
-        <div class="flex gap-3">
-            <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=csv" class="px-4 py-2 rounded-xl bg-white border border-primary-200 text-primary-600 text-sm font-semibold shadow-sm hover:bg-primary-50 transition">Descargar CSV</a>
-            <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=xlsx" class="px-4 py-2 rounded-xl bg-primary-500 text-white text-sm font-semibold shadow-lg shadow-primary-500/30 hover:bg-primary-600 transition">Descargar Excel</a>
+        <div class="flex flex-wrap gap-3">
+            <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=csv" class="inline-flex items-center gap-2 rounded-full border border-brand-200/70 bg-white/80 text-brand-600 text-sm font-semibold px-4 py-2 shadow-soft hover:bg-brand-50 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 4.5h15m-15 0v15h15v-15m-6 4.5v6m3-3h-6"/>
+                </svg>
+                Descargar CSV
+            </a>
+            <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=xlsx" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-4 py-2 shadow-floating hover:bg-brand-700 transition transition-press">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6"/>
+                </svg>
+                Descargar Excel
+            </a>
         </div>
     </header>
 
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft space-y-6">
         <form method="GET" class="grid md:grid-cols-5 gap-4 items-end">
             <div class="space-y-1">
                 <label for="from" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Desde</label>
-                <input id="from" name="from" type="date" value="<?= $from ?>" class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-primary-300 focus:ring focus:ring-primary-100">
+                <input id="from" name="from" type="date" value="<?= $from ?>" class="w-full rounded-2xl border border-slate-200 bg-white/90 px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20 transition">
             </div>
             <div class="space-y-1">
                 <label for="to" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Hasta</label>
-                <input id="to" name="to" type="date" value="<?= $to ?>" class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-primary-300 focus:ring focus:ring-primary-100">
+                <input id="to" name="to" type="date" value="<?= $to ?>" class="w-full rounded-2xl border border-slate-200 bg-white/90 px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20 transition">
             </div>
             <div class="space-y-1">
                 <label for="type" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Tipo</label>
-                <select id="type" name="type" class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-primary-300 focus:ring focus:ring-primary-100">
+                <select id="type" name="type" class="w-full rounded-2xl border border-slate-200 bg-white/90 px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20 transition">
                     <option value="">Todos</option>
                     <option value="income" <?= $typeFilter === 'income' ? 'selected' : '' ?>>Ingresos</option>
                     <option value="expense" <?= $typeFilter === 'expense' ? 'selected' : '' ?>>Gastos</option>
@@ -76,11 +87,11 @@ $exportQuery = http_build_query([
             </div>
             <div class="space-y-1">
                 <label for="category" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Categoria</label>
-                <input id="category" name="category" type="text" value="<?= $categoryFilter ?>" placeholder="Ej. Transporte" class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-primary-300 focus:ring focus:ring-primary-100">
+                <input id="category" name="category" type="text" value="<?= $categoryFilter ?>" placeholder="Ej. Transporte" class="w-full rounded-2xl border border-slate-200 bg-white/90 px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20 transition">
             </div>
             <div class="space-y-1">
                 <label for="payment_method" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Metodo</label>
-                <select id="payment_method" name="payment_method" class="w-full rounded-xl border-slate-200 bg-white px-3 py-2 focus:border-primary-300 focus:ring focus:ring-primary-100">
+                <select id="payment_method" name="payment_method" class="w-full rounded-2xl border border-slate-200 bg-white/90 px-3 py-2 focus:border-brand-300 focus:ring focus:ring-info/20 transition">
                     <option value="">Todos</option>
                     <option value="efectivo" <?= $methodFilter === 'efectivo' ? 'selected' : '' ?>>Efectivo</option>
                     <option value="tarjeta" <?= $methodFilter === 'tarjeta' ? 'selected' : '' ?>>Tarjeta</option>
@@ -89,44 +100,84 @@ $exportQuery = http_build_query([
                 </select>
             </div>
             <div class="md:col-span-5 flex justify-end gap-3">
-                <button type="submit" class="px-5 py-2 rounded-xl bg-primary-500 text-white text-sm font-semibold shadow hover:bg-primary-600 transition">Aplicar filtros</button>
-                <a href="/App-Control-Gastos/public/reportes" class="px-5 py-2 rounded-xl border border-slate-200 text-sm font-semibold text-slate-500 hover:border-primary-200 hover:text-primary-600 transition">Limpiar</a>
+                <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 shadow-floating hover:bg-brand-700 transition transition-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 4.5h15m-1.5 0-.75 9m-11.5 0L4.5 4.5m3 9h9m-9 0 1.5 6m7.5-6-1.5 6"/>
+                    </svg>
+                    Aplicar filtros
+                </button>
+                <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-slate-200/70 text-sm font-semibold text-slate-500 px-5 py-2.5 hover:border-brand-200 hover:text-brand-600 transition">
+                    Limpiar
+                </a>
             </div>
         </form>
     </section>
 
     <section class="grid gap-6 lg:grid-cols-4">
-        <article class="card-glass rounded-3xl p-6 space-y-2">
-            <p class="text-sm text-slate-500 font-semibold">Ingresos base</p>
-            <p class="text-3xl font-bold text-primary-600"><?= number_format($overview['base_income'], 2) ?> <?= $currency ?></p>
-            <p class="text-xs text-slate-400">Ingreso mensual registrado en tu perfil.</p>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-500 font-semibold">Ingresos base</p>
+                <span class="icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0-9-9"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 7.5V12l2.5 1.25"/>
+                    </svg>
+                </span>
+            </div>
+            <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['base_income'], 2) ?> <?= $currency ?></p>
+            <p class="text-xs text-slate-400">Ingresos recurrentes configurados en tu perfil.</p>
         </article>
-        <article class="card-glass rounded-3xl p-6 space-y-2">
-            <p class="text-sm text-slate-500 font-semibold">Ingresos registrados</p>
-            <p class="text-3xl font-bold text-primary-600"><?= number_format($overview['registered_income'], 2) ?> <?= $currency ?></p>
-            <p class="text-xs text-slate-400">Ingresos adicionales dentro del periodo.</p>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-500 font-semibold">Ingresos registrados</p>
+                <span class="icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12a9 9 0 1 1 9 9"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 12h9M12 7.5v9"/>
+                    </svg>
+                </span>
+            </div>
+            <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['registered_income'], 2) ?> <?= $currency ?></p>
+            <p class="text-xs text-slate-400">Ingresos adicionales dentro del periodo filtrado.</p>
         </article>
-        <article class="card-glass rounded-3xl p-6 space-y-2">
-            <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
+                <span class="icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 3 18 18M9.75 9.75 4.5 14.25m15 0A7.5 7.5 0 0 0 9.75 9.75"/>
+                    </svg>
+                </span>
+            </div>
             <p class="text-3xl font-bold text-danger"><?= number_format($overview['expenses'], 2) ?> <?= $currency ?></p>
-            <p class="text-xs text-slate-400">Suma de tus egresos filtrados.</p>
+            <p class="text-xs text-slate-400">Suma de egresos segun los filtros actuales.</p>
         </article>
-        <article class="card-glass rounded-3xl p-6 space-y-2">
-            <p class="text-sm text-slate-500 font-semibold">Resultado neto</p>
-            <p class="text-3xl font-bold <?= $overview['net'] >= 0 ? 'text-primary-600' : 'text-danger' ?>"><?= number_format($overview['net'], 2) ?> <?= $currency ?></p>
-            <p class="text-xs text-slate-400">Ingresos menos gastos en el periodo.</p>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
+            <div class="flex items-center justify-between">
+                <p class="text-sm text-slate-500 font-semibold">Resultado neto</p>
+                <span class="icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8.25v7.5m-3.75-3.75h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                    </svg>
+                </span>
+            </div>
+            <p class="text-3xl font-bold <?= $overview['net'] >= 0 ? 'text-brand-700 dark:text-info' : 'text-danger' ?>"><?= number_format($overview['net'], 2) ?> <?= $currency ?></p>
+            <p class="text-xs text-slate-400">Comparativa entre ingresos y gastos del periodo.</p>
         </article>
     </section>
 
     <section class="grid gap-6 lg:grid-cols-2">
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-primary-700 mb-4">Tendencia mensual</h2>
+        <article class="chart-card bg-white dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800/60 shadow-soft">
+            <h2 class="text-xl font-semibold text-brand-700 dark:text-info mb-4">Tendencia mensual</h2>
             <canvas id="trendChart" height="200"></canvas>
         </article>
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-primary-700 mb-4">Gastos por metodo de pago</h2>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Gastos por metodo de pago</h2>
+                <span class="badge-soft">Comparativa</span>
+            </div>
             <?php if (empty($methodData)): ?>
-                <p class="text-sm text-slate-400">Aun no hay datos suficientes para este periodo.</p>
+                <p class="text-sm text-slate-500">Aun no hay datos suficientes para este periodo.</p>
             <?php else: ?>
                 <canvas id="methodChart" height="200"></canvas>
             <?php endif; ?>
@@ -134,29 +185,32 @@ $exportQuery = http_build_query([
     </section>
 
     <section class="grid gap-6 lg:grid-cols-2">
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-primary-700 mb-4">Distribucion de gastos por categoria</h2>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft">
+            <h2 class="text-xl font-semibold text-brand-700 dark:text-info mb-4">Distribucion de gastos por categoria</h2>
             <?php if (empty($expenseCategories)): ?>
-                <p class="text-sm text-slate-400">Registra mas movimientos para ver este grafico.</p>
+                <p class="text-sm text-slate-500">Registra mas movimientos para ver este grafico.</p>
             <?php else: ?>
                 <canvas id="expenseChart" height="200"></canvas>
             <?php endif; ?>
         </article>
-        <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 class="text-xl font-semibold text-primary-700 mb-4">Distribucion de ingresos</h2>
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft">
+            <h2 class="text-xl font-semibold text-brand-700 dark:text-info mb-4">Distribucion de ingresos</h2>
             <?php if (empty($incomeCategories)): ?>
-                <p class="text-sm text-slate-400">No hay ingresos registrados en el periodo.</p>
+                <p class="text-sm text-slate-500">No hay ingresos registrados en el periodo.</p>
             <?php else: ?>
                 <canvas id="incomeChart" height="200"></canvas>
             <?php endif; ?>
         </article>
     </section>
 
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-        <h2 class="text-xl font-semibold text-primary-700">Detalle de movimientos filtrados</h2>
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-slate-200 text-sm">
-                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Detalle de movimientos filtrados</h2>
+            <span class="text-xs text-slate-400">Periodos: <?= $from ?> &mdash; <?= $to ?></span>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-slate-200/60 dark:border-slate-800/60">
+            <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+                <thead class="bg-slate-50 dark:bg-slate-900/70 text-xs uppercase tracking-wide text-slate-500">
                     <tr>
                         <th class="px-4 py-3 text-left">Fecha</th>
                         <th class="px-4 py-3 text-left">Tipo</th>
@@ -166,20 +220,20 @@ $exportQuery = http_build_query([
                         <th class="px-4 py-3 text-right">Monto</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                     <?php if (empty($rows)): ?>
                         <tr>
                             <td colspan="6" class="px-4 py-6 text-center text-slate-400">No se encontraron movimientos con los filtros seleccionados.</td>
                         </tr>
                     <?php else: ?>
                         <?php foreach ($rows as $row): ?>
-                            <tr class="hover:bg-primary-50/40 transition">
-                                <td class="px-4 py-3 text-slate-600 font-semibold"><?= htmlspecialchars($row['happened_on'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td class="px-4 py-3 text-slate-600"><?= strtoupper(htmlspecialchars($row['type'], ENT_QUOTES, 'UTF-8')) ?></td>
-                                <td class="px-4 py-3 text-slate-600"><?= htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td class="px-4 py-3 text-slate-400"><?= htmlspecialchars($row['description'] ?? '-', ENT_QUOTES, 'UTF-8') ?></td>
-                                <td class="px-4 py-3 text-slate-500"><?= htmlspecialchars($row['payment_method'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td class="px-4 py-3 text-right font-semibold <?= $row['type'] === 'income' ? 'text-primary-600' : 'text-danger' ?>"><?= number_format((float) $row['amount'], 2) ?> <?= $currency ?></td>
+                            <tr class="hover:bg-brand-50/40 dark:hover:bg-slate-800/40 transition">
+                                <td class="px-4 py-3 text-slate-600 dark:text-slate-200 font-semibold"><?= htmlspecialchars($row['happened_on'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td class="px-4 py-3 text-slate-600 dark:text-slate-200"><?= strtoupper(htmlspecialchars($row['type'], ENT_QUOTES, 'UTF-8')) ?></td>
+                                <td class="px-4 py-3 text-slate-600 dark:text-slate-200"><?= htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td class="px-4 py-3 text-slate-400 dark:text-slate-400"><?= htmlspecialchars($row['description'] ?? '-', ENT_QUOTES, 'UTF-8') ?></td>
+                                <td class="px-4 py-3 text-slate-500 dark:text-slate-300"><?= htmlspecialchars($row['payment_method'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td class="px-4 py-3 text-right font-semibold <?= $row['type'] === 'income' ? 'text-brand-600 dark:text-info' : 'text-danger' ?>"><?= number_format((float) $row['amount'], 2) ?> <?= $currency ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -262,8 +316,8 @@ $exportQuery = http_build_query([
         });
     };
 
-    renderPie('expenseChart', expenseData, ['#0072FF', '#66AAFF', '#99C6FF', '#338EFF', '#002E66']);
-    renderPie('incomeChart', incomeData, ['#38BDF8', '#0EA5E9', '#0284C7', '#0369A1', '#0C4A6E']);
+    renderPie('expenseChart', expenseData, ['#1E3A8A', '#38BDF8', '#0EA5E9', '#22C55E', '#94A3B8']);
+    renderPie('incomeChart', incomeData, ['#22C55E', '#3B82F6', '#38BDF8', '#0EA5E9', '#34D399']);
 
     const methodCtx = document.getElementById('methodChart');
     if (methodCtx && methodData.length) {
@@ -275,7 +329,7 @@ $exportQuery = http_build_query([
                     {
                         label: 'Total',
                         data: methodData.map(item => item.total),
-                        backgroundColor: '#0072FF',
+                        backgroundColor: '#1E3A8A',
                     }
                 ]
             },
