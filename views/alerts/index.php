@@ -53,7 +53,7 @@ foreach ($alerts as $alert) {
 ?>
 
 <section class="space-y-12">
-    <header class="rounded-3xl border border-brand-200/60 bg-gradient-to-r from-brand-500/20 via-brand-500/10 to-brand-500/30 px-8 py-10 shadow-floating">
+    <header class="rounded-3xl border border-brand-200/60 bg-gradient-to-r from-brand-500/20 via-brand-500/10 to-brand-500/30 px-6 py-8 sm:px-8 sm:py-10 shadow-floating">
         <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div class="space-y-3 text-brand-700">
                 <p class="text-xs font-semibold uppercase tracking-[0.32em] text-brand-500/80">Centro de alertas</p>
@@ -84,7 +84,7 @@ foreach ($alerts as $alert) {
 
     <section class="grid gap-8 lg:grid-cols-3">
         <article class="lg:col-span-2 space-y-5">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <h2 class="text-xl font-semibold text-slate-700">Panel de alertas</h2>
                 <?php if (!empty($alerts)): ?>
                     <div class="flex items-center gap-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">
@@ -96,7 +96,7 @@ foreach ($alerts as $alert) {
             </div>
 
             <?php if (empty($alerts)): ?>
-                <div class="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+                <div class="rounded-3xl border border-slate-200 bg-white px-6 py-8 sm:p-8 text-center shadow-sm">
                     <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-brand-200 text-brand-600">
                         
                     </div>
@@ -116,7 +116,7 @@ foreach ($alerts as $alert) {
                         $label = $levelLabels[$level] ?? ucfirst($level);
                         $payload = $alert['payload'] ?? [];
                         ?>
-                        <article class="group rounded-3xl border px-6 py-5 shadow-sm transition hover:shadow-md <?= $style ?>">
+                        <article class="group rounded-3xl border px-5 py-5 sm:px-6 sm:py-6 shadow-sm transition hover:shadow-md <?= $style ?>">
                             <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                                 <div class="space-y-2">
                                     <div class="flex items-center gap-3">
@@ -160,7 +160,7 @@ foreach ($alerts as $alert) {
                                     <form action="/App-Control-Gastos/public/alertas/marcar" method="POST">
                                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
                                         <input type="hidden" name="alert_id" value="<?= (int) $alert['id'] ?>">
-                                        <button class="rounded-full border border-transparent px-4 py-2 text-xs font-semibold text-brand-600 transition hover:border-brand-200 hover:bg-brand-50 disabled:cursor-not-allowed disabled:text-slate-400" <?= $alert['seen_at'] ? 'disabled' : '' ?>>
+                                        <button class="rounded-full border border-transparent px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-semibold text-brand-600 transition hover:border-brand-200 hover:bg-brand-50 disabled:cursor-not-allowed disabled:text-slate-400" <?= $alert['seen_at'] ? 'disabled' : '' ?>>
                                             <?= $alert['seen_at'] ? 'Alerta atendida' : 'Marcar como leida' ?>
                                         </button>
                                     </form>
@@ -173,12 +173,12 @@ foreach ($alerts as $alert) {
         </article>
 
         <aside class="space-y-6">
-            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-sm">
                 <h2 class="text-lg font-semibold text-brand-700 mb-4">Actividad de los ultimos meses</h2>
                 <canvas id="alertsTrendChart" height="200"></canvas>
             </div>
 
-            <div class="rounded-3xl border border-brand-200 bg-brand-50/70 p-6 shadow-sm space-y-3">
+            <div class="rounded-3xl border border-brand-200 bg-brand-50/70 p-6 sm:p-7 shadow-sm space-y-3">
                 <h3 class="text-lg font-semibold text-brand-700">Recomendaciones rapidas</h3>
                 <ul class="space-y-2 text-sm text-brand-700">
                     <li class="flex items-start gap-2">

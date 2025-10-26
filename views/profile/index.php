@@ -53,7 +53,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
 ?>
 
 <section class="space-y-12">
-    <header class="gradient-card p-10 md:p-12 shadow-floating flex flex-col gap-8">
+    <header class="gradient-card px-6 py-8 sm:px-10 sm:py-10 md:p-12 shadow-floating flex flex-col gap-8">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div class="flex items-start gap-4">
                 <div class="h-16 w-16 rounded-full bg-white/90/20 text-white font-semibold text-2xl flex items-center justify-center avatar-ring">
@@ -70,11 +70,11 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                 </div>
             </div>
             <div class="flex flex-wrap gap-3">
-                <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-white/90/90 text-brand-600 px-5 py-3 text-sm font-semibold shadow-soft hover:bg-white/90 transition">
+                <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-white/90/90 text-brand-600 px-4 py-2.5 sm:px-5 sm:py-3 text-sm md:text-base font-semibold shadow-soft hover:bg-white/90 transition">
                     <?= $icon('plus-circle') ?>
                     Registrar movimiento
                 </a>
-                <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-white/40 text-white px-5 py-3 text-sm font-semibold hover:bg-white/90/15 transition">
+                <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-white/40 text-white px-4 py-2.5 sm:px-5 sm:py-3 text-sm md:text-base font-semibold hover:bg-white/90/15 transition">
                     Ver reportes
                     <?= $icon('chevron-right') ?>
                 </a>
@@ -97,8 +97,8 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
     </header>
 
     <section class="grid gap-6 lg:grid-cols-3">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Ingreso total mensual</p>
                 <span class="icon-circle">
                     <?= $icon('wallet') ?>
@@ -108,8 +108,8 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <p class="text-xs text-slate-400">Incluye ingresos fijos y adicionales registrados.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Limite de gastos</p>
                 <span class="icon-circle">
                     <?= $icon('target') ?>
@@ -119,8 +119,8 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <p class="text-xs text-slate-400">Recibiras alertas al acercarte a este monto objetivo.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Medios de gasto</p>
                 <span class="icon-circle">
                     <?= $icon('credit-card') ?>
@@ -131,8 +131,8 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
         </article>
     </section>
 
-    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-8 space-y-8 shadow-soft">
-        <div class="flex items-center justify-between">
+    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 px-6 py-7 sm:p-8 space-y-8 shadow-soft">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
                 <h2 class="text-2xl font-semibold text-brand-700 dark:text-info">Actualizar informacion</h2>
                 <p class="text-slate-500 text-sm mt-1">Modifica tus datos personales, ingresos y objetivos desde aqui.</p>

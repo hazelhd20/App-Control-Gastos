@@ -39,7 +39,7 @@ $alertPalette = [
 ?>
 
 <section class="space-y-12">
-    <header class="gradient-card p-10 md:p-12 shadow-floating overflow-hidden relative">
+    <header class="gradient-card px-6 py-8 sm:px-10 sm:py-10 md:p-12 shadow-floating overflow-hidden relative">
         <div class="absolute right-10 top-10 hidden md:block">
             <div class="h-32 w-32 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white/70 text-xs uppercase tracking-[0.4em]">
                 <?= htmlspecialchars(strtoupper($currency), ENT_QUOTES, 'UTF-8') ?>
@@ -62,7 +62,7 @@ $alertPalette = [
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="bg-white/15 rounded-3xl border border-white/25 backdrop-blur-xl px-6 py-5 max-w-sm shadow-floating space-y-3 text-sm">
+                <div class="bg-white/15 rounded-3xl border border-white/25 backdrop-blur-xl px-6 py-5 w-full md:max-w-sm shadow-floating space-y-3 text-sm">
                     <p class="text-white/70 uppercase tracking-wide text-xs font-semibold">Objetivo en curso</p>
                     <p class="text-lg font-semibold"><?= htmlspecialchars($goalLabel, ENT_QUOTES, 'UTF-8') ?></p>
                     <?php if (!empty($profile['goal_description'])): ?>
@@ -167,8 +167,8 @@ $alertPalette = [
     <?php endif; ?>
 
     <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Ingresos base</p>
                     <p class="mt-3 text-3xl font-bold text-brand-700 dark:text-info">
@@ -182,8 +182,8 @@ $alertPalette = [
             <p class="mt-4 text-xs text-slate-500">Incluye tus ingresos mensuales y adicionales configurados en el perfil.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Ingresos registrados</p>
                     <p class="mt-3 text-3xl font-bold text-brand-700 dark:text-info">
@@ -197,8 +197,8 @@ $alertPalette = [
             <p class="mt-4 text-xs text-slate-500">Dinero capturado en el periodo actual, perfecto para actualizar tus flujos.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Gastos del mes</p>
                     <p class="mt-3 text-3xl font-bold text-danger">
@@ -212,8 +212,8 @@ $alertPalette = [
             <p class="mt-4 text-xs text-slate-500">Total de egresos registrados. Analiza tus categorías para mejorar cada rubro.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Saldo disponible</p>
                     <p class="mt-3 text-3xl font-bold <?= $summary['available'] >= 0 ? 'text-brand-700 dark:text-info' : 'text-danger' ?>">
@@ -243,8 +243,8 @@ $alertPalette = [
             <canvas id="dashboardTrendChart" height="240"></canvas>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-6 shadow-soft">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-6 shadow-soft">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Uso del límite mensual</p>
                     <p class="mt-2 text-lg font-semibold text-brand-700 dark:text-info"><?= $limitUsagePercent ?>%</p>
@@ -283,8 +283,8 @@ $alertPalette = [
     </section>
 
     <section class="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-5 shadow-soft">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-5 shadow-soft">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Acciones sugeridas</h2>
                 <span class="badge-soft">Productividad</span>
             </div>
@@ -319,7 +319,7 @@ $alertPalette = [
             </div>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 shadow-soft">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 shadow-soft">
             <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-3">Métodos de gasto configurados</h2>
             <?php if (empty($media)): ?>
                 <p class="text-sm text-slate-500">Configura tus medios de gasto para visualizar comparativas por canal.</p>
@@ -337,7 +337,7 @@ $alertPalette = [
     </section>
 
     <section class="grid gap-6 lg:grid-cols-3">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 shadow-soft">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 shadow-soft">
             <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-4">Top categorías de gasto</h2>
             <?php if (empty($topCategories)): ?>
                 <p class="text-sm text-slate-500">Aún no hay datos suficientes este mes. Registra tus gastos para comenzar a analizarlos.</p>
@@ -353,7 +353,7 @@ $alertPalette = [
             <?php endif; ?>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 shadow-soft">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 shadow-soft">
             <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-4">Métodos de pago más usados</h2>
             <?php if (empty($paymentBreakdown)): ?>
                 <p class="text-sm text-slate-500">Registra movimientos para visualizar tus métodos de pago preferidos.</p>
@@ -369,7 +369,7 @@ $alertPalette = [
             <?php endif; ?>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 shadow-soft">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 shadow-soft">
             <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-4">Historial de consumo</h2>
             <?php if (empty($recent)): ?>
                 <div class="flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-slate-300/70 dark:border-slate-700/70 bg-slate-50/60 dark:bg-slate-900/40 px-6 py-10 text-center">
@@ -409,7 +409,7 @@ $alertPalette = [
         </article>
     </section>
 
-    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 shadow-soft space-y-4">
+    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-8 shadow-soft space-y-4">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
                 <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Movimientos recientes</h2>
@@ -420,7 +420,7 @@ $alertPalette = [
                 <?= lucide_icon('chevron-right', 'h-4 w-4') ?>
             </a>
         </div>
-        <div class="overflow-x-auto rounded-2xl border border-slate-200/60 dark:border-slate-800/60">
+        <div class="w-full overflow-x-auto md:overflow-visible rounded-2xl border border-slate-200/60 dark:border-slate-800/60">
             <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm">
                 <thead class="bg-slate-50 dark:bg-slate-900/70 text-xs uppercase tracking-wide text-slate-500">
                     <tr>
