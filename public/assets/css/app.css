@@ -92,12 +92,22 @@ body {
 
 .app-grid {
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     min-height: 100vh;
 }
 
 .app-grid--collapsed {
-    grid-template-columns: 88px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1024px) {
+    .app-grid {
+        grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    .app-grid--collapsed {
+        grid-template-columns: 88px minmax(0, 1fr);
+    }
 }
 
 [data-app-sidebar].is-collapsed {
