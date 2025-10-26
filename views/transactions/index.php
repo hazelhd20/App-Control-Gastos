@@ -33,24 +33,24 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
     </header>
 
     <section class="grid gap-6 lg:grid-cols-4">
-        <article class="surface-card rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 sm:p-7 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Ingresos base (perfil)</p>
             <p class="text-3xl font-bold text-brand-600"><?= number_format($summary['base_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingreso mensual y adicional registrados en tu perfil.</p>
         </article>
-        <article class="surface-card rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 sm:p-7 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Ingresos adicionales</p>
             <p class="text-3xl font-bold text-brand-600"><?= number_format($summary['additional_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingresos registrados durante el periodo seleccionado.</p>
         </article>
-        <article class="surface-card rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 sm:p-7 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
             <p class="text-3xl font-bold <?= $overLimit ? 'text-danger' : 'text-brand-600' ?>">
                 <?= number_format($summary['total_expenses'], 2) ?> <?= $currency ?>
             </p>
             <p class="text-xs text-slate-400">Total de egresos registrados este mes.</p>
         </article>
-        <article class="surface-card rounded-3xl p-6 space-y-2">
+        <article class="surface-card rounded-3xl p-6 sm:p-7 space-y-2">
             <p class="text-sm text-slate-500 font-semibold">Saldo disponible</p>
             <p class="text-3xl font-bold <?= $summary['available'] < 0 ? 'text-danger' : 'text-brand-600' ?>">
                 <?= number_format($summary['available'], 2) ?> <?= $currency ?>
@@ -59,8 +59,8 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
         </article>
     </section>
 
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-        <div class="flex items-center justify-between">
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <p class="text-sm font-semibold text-slate-600">Uso del límite mensual de gastos</p>
             <span class="text-sm font-semibold <?= $overLimit ? 'text-danger' : 'text-brand-600' ?>">
                 <?= $limitUsage ?>%
@@ -76,8 +76,8 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
     </section>
 
     <section class="space-y-6">
-        <article id="registro" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6 scroll-mt-24">
-            <div class="flex items-center justify-between">
+        <article id="registro" class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-6 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <h2 class="text-xl font-semibold text-brand-700">Registrar movimiento</h2>
                 <span class="text-xs font-semibold text-brand-500 bg-brand-100 px-3 py-1 rounded-full">Nuevo</span>
             </div>
@@ -190,7 +190,7 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                 </div>
 
                 <div class="flex justify-end">
-                    <button type="submit" class="px-6 py-3 rounded-2xl bg-brand-600 text-white font-semibold shadow-lg shadow-floating hover:bg-brand-700 transition">
+                    <button type="submit" class="px-6 py-3 md:px-7 md:py-3.5 rounded-2xl bg-brand-600 text-white font-semibold text-sm md:text-base shadow-lg shadow-floating hover:bg-brand-700 transition">
                         Registrar movimiento
                     </button>
                 </div>
@@ -198,7 +198,7 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
         </article>
     </section>
 
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-6">
         <form method="GET" class="grid md:grid-cols-5 gap-4 items-end">
             <div class="space-y-1">
                 <label for="month" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Mes</label>
@@ -232,17 +232,17 @@ $oldValue = function (string $field, mixed $default = '') use ($old) {
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="flex gap-3">
-                <button type="submit" class="flex-1 px-4 py-2 rounded-xl bg-brand-600 text-white text-sm font-semibold shadow hover:bg-brand-700 transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
+                <button type="submit" class="w-full sm:w-auto px-4 py-2 md:px-5 md:py-2.5 rounded-xl bg-brand-600 text-white text-sm md:text-base font-semibold shadow hover:bg-brand-700 transition">
                     Aplicar filtros
                 </button>
-                <a href="/App-Control-Gastos/public/transacciones" class="px-4 py-2 rounded-xl border border-slate-200 text-sm font-semibold text-slate-500 hover:border-brand-200 hover:text-brand-600 transition">
+                <a href="/App-Control-Gastos/public/transacciones" class="w-full sm:w-auto px-4 py-2 md:px-5 md:py-2.5 rounded-xl border border-slate-200 text-sm md:text-base font-semibold text-slate-500 hover:border-brand-200 hover:text-brand-600 transition text-center">
                     Borrar filtros
                 </a>
             </div>
         </form>
 
-        <div class="overflow-x-auto">
+        <div class="w-full overflow-x-auto md:overflow-visible">
             <table class="min-w-full divide-y divide-slate-200 text-sm">
                 <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
                     <tr>

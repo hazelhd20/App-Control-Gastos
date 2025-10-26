@@ -67,7 +67,7 @@ $exportQuery = http_build_query([
         </div>
     </header>
 
-    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft space-y-6">
+    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 sm:p-8 shadow-soft space-y-6">
         <form method="GET" class="grid md:grid-cols-5 gap-4 items-end">
             <div class="space-y-1">
                 <label for="from" class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Desde</label>
@@ -99,12 +99,12 @@ $exportQuery = http_build_query([
                     <option value="otro" <?= $methodFilter === 'otro' ? 'selected' : '' ?>>Otro</option>
                 </select>
             </div>
-            <div class="md:col-span-5 flex justify-end gap-3">
-                <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 shadow-floating hover:bg-brand-700 transition transition-press">
+            <div class="md:col-span-5 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
+                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 text-white text-sm md:text-base font-semibold px-5 py-2.5 md:px-6 md:py-3 shadow-floating hover:bg-brand-700 transition transition-press">
                     <?= $icon('filter', 'h-4 w-4') ?>
                     Aplicar filtros
                 </button>
-                <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-slate-200/70 text-sm font-semibold text-slate-500 px-5 py-2.5 hover:border-brand-200 hover:text-brand-600 transition">
+                <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200/70 text-sm md:text-base font-semibold text-slate-500 px-5 py-2.5 md:px-6 md:py-3 hover:border-brand-200 hover:text-brand-600 transition">
                     Limpiar
                 </a>
             </div>
@@ -112,8 +112,8 @@ $exportQuery = http_build_query([
     </section>
 
     <section class="grid gap-6 lg:grid-cols-4">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Ingresos base</p>
                 <span class="icon-circle">
                     <?= $icon('clock-3') ?>
@@ -122,8 +122,8 @@ $exportQuery = http_build_query([
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['base_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingresos recurrentes configurados en tu perfil.</p>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Ingresos registrados</p>
                 <span class="icon-circle">
                     <?= $icon('piggy-bank') ?>
@@ -132,8 +132,8 @@ $exportQuery = http_build_query([
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['registered_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingresos adicionales dentro del periodo filtrado.</p>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
                 <span class="icon-circle">
                     <?= $icon('trending-down') ?>
@@ -142,8 +142,8 @@ $exportQuery = http_build_query([
             <p class="text-3xl font-bold text-danger"><?= number_format($overview['expenses'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Suma de egresos segun los filtros actuales.</p>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 space-y-3 hover-lift transition">
-            <div class="flex items-center justify-between">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Resultado neto</p>
                 <span class="icon-circle">
                     <?= $icon('calculator') ?>
@@ -159,8 +159,8 @@ $exportQuery = http_build_query([
             <h2 class="text-xl font-semibold text-brand-700 dark:text-info mb-4">Tendencia mensual</h2>
             <canvas id="trendChart" height="200"></canvas>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft">
-            <div class="flex items-center justify-between mb-4">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 sm:p-7 shadow-soft">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Gastos por metodo de pago</h2>
                 <span class="badge-soft">Comparativa</span>
             </div>
@@ -173,7 +173,7 @@ $exportQuery = http_build_query([
     </section>
 
     <section class="grid gap-6 lg:grid-cols-2">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 sm:p-7 shadow-soft">
             <h2 class="text-xl font-semibold text-brand-700 dark:text-info mb-4">Distribucion de gastos por categoria</h2>
             <?php if (empty($expenseCategories)): ?>
                 <p class="text-sm text-slate-500">Registra mas movimientos para ver este grafico.</p>
@@ -181,7 +181,7 @@ $exportQuery = http_build_query([
                 <canvas id="expenseChart" height="200"></canvas>
             <?php endif; ?>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 sm:p-7 shadow-soft">
             <h2 class="text-xl font-semibold text-brand-700 dark:text-info mb-4">Distribucion de ingresos</h2>
             <?php if (empty($incomeCategories)): ?>
                 <p class="text-sm text-slate-500">No hay ingresos registrados en el periodo.</p>
@@ -191,12 +191,12 @@ $exportQuery = http_build_query([
         </article>
     </section>
 
-    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 shadow-soft space-y-4">
+    <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 sm:p-8 shadow-soft space-y-4">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Detalle de movimientos filtrados</h2>
             <span class="text-xs text-slate-400">Periodos: <?= $from ?> &mdash; <?= $to ?></span>
         </div>
-        <div class="overflow-x-auto rounded-2xl border border-slate-200/60 dark:border-slate-800/60">
+        <div class="w-full overflow-x-auto md:overflow-visible rounded-2xl border border-slate-200/60 dark:border-slate-800/60">
             <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm">
                 <thead class="bg-slate-50 dark:bg-slate-900/70 text-xs uppercase tracking-wide text-slate-500">
                     <tr>
