@@ -86,7 +86,13 @@ $pageTitle = $title ?? 'Control de Gastos';
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
     <a href="#main-content" class="skip-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400">Saltar al contenido principal</a>
-    <div class="app-grid bg-transparent" data-app-grid>
+    <div
+        class="grid min-h-screen bg-transparent lg:grid-cols-[260px_minmax(0,1fr)]"
+        data-app-grid
+        data-grid-expanded-class="lg:grid-cols-[260px_minmax(0,1fr)]"
+        data-grid-collapsed-class="lg:grid-cols-[88px_minmax(0,1fr)]"
+        data-sidebar-state="expanded"
+    >
         <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
         <div class="flex flex-col min-h-screen bg-soft-spot/40 dark:bg-transparent">

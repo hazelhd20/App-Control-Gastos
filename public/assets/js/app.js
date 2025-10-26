@@ -240,14 +240,34 @@ function initSidebarToggle() {
     }
 
     const storageKey = 'acg-sidebar';
+    const parseClassList = (value, fallback) => {
+        const tokens = (value || '')
+            .split(' ')
+            .map((token) => token.trim())
+            .filter(Boolean);
+        return tokens.length ? tokens : fallback;
+    };
+
+    const expandedClasses = parseClassList(appGrid.dataset.gridExpandedClass, ['lg:grid-cols-[260px_minmax(0,1fr)]']);
+    const collapsedClasses = parseClassList(appGrid.dataset.gridCollapsedClass, ['lg:grid-cols-[88px_minmax(0,1fr)]']);
+
     const applyState = (isCollapsed) => {
         sidebar.classList.toggle('is-collapsed', isCollapsed);
-        appGrid.classList.toggle('app-grid--collapsed', isCollapsed);
+
+        const classesToAdd = isCollapsed ? collapsedClasses : expandedClasses;
+        const classesToRemove = isCollapsed ? expandedClasses : collapsedClasses;
+
+        classesToRemove.forEach((className) => appGrid.classList.remove(className));
+        classesToAdd.forEach((className) => appGrid.classList.add(className));
+
+        appGrid.dataset.sidebarState = isCollapsed ? 'collapsed' : 'expanded';
         toggle.setAttribute('aria-expanded', String(!isCollapsed));
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
-        // Corrige acento en menú
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
+
+        const label = toggle.querySelector('[data-sidebar-toggle-label]');
+        if (label) {
+            label.textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
+        }
+
         const icon = toggle.querySelector('svg');
         if (icon) {
             icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
