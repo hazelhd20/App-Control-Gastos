@@ -61,16 +61,16 @@ $pageTitle = $title ?? 'Control de Gastos';
     <script defer src="/App-Control-Gastos/public/assets/vendor/lucide.min.js"></script>
     <script defer src="/App-Control-Gastos/public/assets/js/app.js"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200 text-slate-900 antialiased">
-    <div class="relative min-h-screen flex items-center justify-center py-10 px-4">
+<body class="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200 text-slate-900 antialiased lg:overflow-hidden">
+    <div class="relative min-h-screen lg:h-screen flex items-start justify-center py-10 px-4">
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div class="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-brand-500/15 blur-3xl"></div>
             <div class="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-accent-200/30 blur-3xl"></div>
         </div>
 
         <div class="relative w-full max-w-6xl bg-white/80 border border-slate-200/60 shadow-[0_40px_80px_-48px_rgba(15,23,42,0.4)] rounded-[2.5rem] overflow-hidden backdrop-blur-xl">
-            <div class="grid lg:grid-cols-[1.1fr_1fr] min-h-[620px]">
-                <div class="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white relative">
+            <div class="grid lg:grid-cols-[1.1fr_1fr] min-h-[620px] lg:h-[calc(100vh-5rem)]">
+                <div class="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white relative h-full">
                     <div class="flex items-center gap-3">
                         <span class="flex h-12 w-12 items-center justify-center rounded-3xl bg-white text-brand-600 text-xl font-semibold shadow-floating">
                             CG
@@ -113,7 +113,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                     </div>
                 </div>
 
-                <div class="flex flex-col justify-center p-8 sm:p-12 bg-white/90 backdrop-blur-xl">
+                <div class="flex flex-col p-8 sm:p-12 bg-white/90 backdrop-blur-xl lg:overflow-y-auto lg:scroll-invisible lg:h-full">
                     <a href="/App-Control-Gastos/public" class="lg:hidden inline-flex items-center gap-3 mb-8">
                         <span class="flex h-11 w-11 items-center justify-center rounded-3xl bg-brand-600 text-white font-semibold shadow-floating">
                             CG

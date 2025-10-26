@@ -4,6 +4,17 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Invisible scrollbar utility for nested scroll areas */
+.scroll-invisible {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+.scroll-invisible::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;             /* Chrome, Safari */
+}
+
 [data-theme="dark"] {
     color-scheme: dark;
 }
