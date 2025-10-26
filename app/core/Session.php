@@ -93,13 +93,19 @@ class Session
     {
         $flashed = $_SESSION[self::FLASH_KEY] ?? [];
 
-        foreach ($flashed as $key => &$flash) {
-            if ($flash['remove'] === true) {
-                unset($_SESSION[self::FLASH_KEY][$key]);
+        foreach ($flashed as $key => $flash) {
+            if (($flash['remove'] ?? false) === true) {
+                unset($flashed[$key]);
                 continue;
             }
 
             $flash['remove'] = true;
+            $flashed[$key] = $flash;
+        }
+
+        if (empty($flashed)) {
+            unset($_SESSION[self::FLASH_KEY]);
+            return;
         }
 
         $_SESSION[self::FLASH_KEY] = $flashed;

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     renderIcons();
+    mountToasts();
     bindPasswordToggles();
     bindMobileNavigation();
     bindGoalDynamicFields();
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebarToggle();
     highlightActiveNav();
     bindToastDismiss();
+    autoDismissToasts();
 });
 
 function bindPasswordToggles() {
@@ -301,6 +303,52 @@ function bindToastDismiss() {
         setTimeout(() => {
             toast.remove();
         }, 180);
+    });
+}
+
+function mountToasts() {
+    // Ensure a floating toast root exists
+    let root = document.getElementById('toast-root');
+    if (!root) {
+        root = document.createElement('div');
+        root.id = 'toast-root';
+        root.className = 'fixed z-[60] pointer-events-none inset-x-0 top-2 sm:inset-x-auto sm:right-4 sm:top-4 sm:left-auto flex flex-col items-stretch sm:items-end gap-3';
+        document.body.appendChild(root);
+    }
+
+    // Move all toasts into the root to stack and avoid layout shift
+    document.querySelectorAll('[data-toast]').forEach((toast) => {
+        if (toast.parentElement !== root) {
+            // Allow interaction with the toast, but not through the container
+            toast.style.pointerEvents = 'auto';
+            root.appendChild(toast);
+        }
+    });
+}
+
+function autoDismissToasts() {
+    const DEFAULT_DELAY = 4500; // ms
+    const CLOSE_ANIM = 180;     // ms (matches .ui-toast--closing transition)
+
+    // UI toasts with data attribute
+    document.querySelectorAll('[data-toast][data-autohide]').forEach((toast) => {
+        const raw = toast.getAttribute('data-autohide') || '';
+        const delay = Number.parseInt(raw, 10);
+        const timeout = Number.isFinite(delay) && delay > 0 ? delay : DEFAULT_DELAY;
+
+        window.setTimeout(() => {
+            if (!document.body.contains(toast)) return;
+            toast.classList.add('ui-toast--closing');
+            window.setTimeout(() => toast.remove(), CLOSE_ANIM);
+        }, timeout);
+    });
+
+    // Fallback: simple .toast blocks
+    document.querySelectorAll('.toast').forEach((toast) => {
+        window.setTimeout(() => {
+            if (!document.body.contains(toast)) return;
+            toast.remove();
+        }, DEFAULT_DELAY);
     });
 }
 

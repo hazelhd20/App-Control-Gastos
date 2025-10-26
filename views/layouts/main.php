@@ -150,7 +150,7 @@ $pageTitle = $title ?? 'Control de Gastos';
             <main id="main-content" class="flex-1 w-full px-5 sm:px-8 lg:px-12 py-10" tabindex="-1">
                 <div class="max-w-7xl mx-auto w-full space-y-6">
                     <?php if ($flashSuccess): ?>
-                        <div class="ui-toast ui-toast--success" role="alert" aria-live="assertive" data-toast>
+                        <div class="ui-toast ui-toast--success" role="alert" aria-live="assertive" data-toast data-autohide="4000">
                             <div class="ui-toast__body">
                                 <span class="ui-toast__icon" aria-hidden="true" data-lucide="check-circle-2"></span>
                                 <span class="ui-toast__message"><?= htmlspecialchars($flashSuccess, ENT_QUOTES, 'UTF-8') ?></span>
@@ -174,7 +174,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                     <?php endif; ?>
 
                     <?php if ($flashInfo): ?>
-                        <div class="ui-toast ui-toast--info" role="status" aria-live="polite" data-toast>
+                        <div class="ui-toast ui-toast--info" role="status" aria-live="polite" data-toast data-autohide="4500">
                             <div class="ui-toast__body">
                                 <span class="ui-toast__icon" aria-hidden="true" data-lucide="info"></span>
                                 <span class="ui-toast__message"><?= htmlspecialchars($flashInfo, ENT_QUOTES, 'UTF-8') ?></span>

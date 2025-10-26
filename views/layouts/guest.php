@@ -125,20 +125,38 @@ $pageTitle = $title ?? 'Control de Gastos';
                     </a>
 
                     <?php if ($flashSuccess): ?>
-                        <div class="mb-6 rounded-2xl border border-accent-200 bg-accent-100/70 px-6 py-4 text-brand-700 shadow-soft toast">
-                            <?= htmlspecialchars($flashSuccess, ENT_QUOTES, 'UTF-8') ?>
+                        <div class="ui-toast ui-toast--success mb-6" role="alert" aria-live="assertive" data-toast data-autohide="4500">
+                            <div class="ui-toast__body">
+                                <span class="ui-toast__icon" aria-hidden="true" data-lucide="check-circle-2"></span>
+                                <span class="ui-toast__message"><?= htmlspecialchars($flashSuccess, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
+                                <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
+                            </button>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($flashError): ?>
-                        <div class="mb-6 rounded-2xl border border-danger/30 bg-rose-50 px-6 py-4 text-danger shadow-soft toast">
-                            <?= htmlspecialchars($flashError, ENT_QUOTES, 'UTF-8') ?>
+                        <div class="ui-toast ui-toast--danger mb-6" role="alert" aria-live="assertive" data-toast>
+                            <div class="ui-toast__body">
+                                <span class="ui-toast__icon" aria-hidden="true" data-lucide="alert-circle"></span>
+                                <span class="ui-toast__message"><?= htmlspecialchars($flashError, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
+                                <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
+                            </button>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($flashInfo): ?>
-                        <div class="mb-6 rounded-2xl border border-info/25 bg-sky-50 px-6 py-4 text-brand-600 shadow-soft toast">
-                            <?= htmlspecialchars($flashInfo, ENT_QUOTES, 'UTF-8') ?>
+                        <div class="ui-toast ui-toast--info mb-6" role="status" aria-live="polite" data-toast data-autohide="5000">
+                            <div class="ui-toast__body">
+                                <span class="ui-toast__icon" aria-hidden="true" data-lucide="info"></span>
+                                <span class="ui-toast__message"><?= htmlspecialchars($flashInfo, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                            <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
+                                <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
+                            </button>
                         </div>
                     <?php endif; ?>
 
