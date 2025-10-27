@@ -35,24 +35,85 @@ $alertPalette = [
     'info' => ['border' => 'border-info/40', 'bg' => 'bg-sky-50 dark:bg-sky-900/30', 'text' => 'text-brand-600 dark:text-info', 'accent' => 'bg-info/30'],
 ];
 
+$alertIcons = [
+    'danger' => 'shield-alert',
+    'warning' => 'alert-triangle',
+    'info' => 'info',
+];
+
+$formatRelativeTime = static function (?string $datetime): ?string {
+    if (empty($datetime)) {
+        return null;
+    }
+
+    $timestamp = strtotime($datetime);
+    if ($timestamp === false) {
+        return null;
+    }
+
+    $diff = time() - $timestamp;
+    $future = $diff < 0;
+    $diff = abs($diff);
+
+    $units = [
+        ['value' => 60, 'label' => 'min'],
+        ['value' => 60, 'label' => 'h'],
+        ['value' => 24, 'label' => 'd'],
+        ['value' => 7, 'label' => 'sem'],
+    ];
+
+    $count = $diff;
+    $labels = ['s'];
+
+    foreach ($units as $unit) {
+        if ($count < $unit['value']) {
+            break;
+        }
+        $count = floor($count / $unit['value']);
+        $labels[] = $unit['label'];
+    }
+
+    $label = end($labels) ?: 's';
+
+    if ($label === 's') {
+        return $future ? 'En instantes' : 'Hace instantes';
+    }
+
+    $count = max(1, (int) $count);
+    $prefix = $future ? 'En ' : 'Hace ';
+
+    switch ($label) {
+        case 'min':
+            return $prefix . $count . ' min';
+        case 'h':
+            return $prefix . $count . ' h';
+        case 'd':
+            return $prefix . $count . ' día' . ($count > 1 ? 's' : '');
+        case 'sem':
+            return $prefix . $count . ' sem';
+        default:
+            return $future ? 'Próximamente' : 'Reciente';
+    }
+};
+
 // Helper centralizado en views/partials/icons.php
 ?>
 
 <section class="space-y-12">
     <header class="gradient-card px-6 py-8 sm:px-10 sm:py-10 md:p-12 shadow-floating overflow-hidden relative">
-        <div class="absolute right-10 top-10 hidden md:block">
-            <div class="h-32 w-32 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white/70 text-xs uppercase tracking-[0.4em]">
+        <div class="absolute right-6 top-6 sm:right-10 sm:top-10 hidden md:block">
+            <div class="h-28 w-28 xl:h-32 xl:w-32 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white/70 text-xs uppercase tracking-[0.4em]">
                 <?= htmlspecialchars(strtoupper($currency), ENT_QUOTES, 'UTF-8') ?>
             </div>
         </div>
         <div class="space-y-8 relative z-10">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                <div class="space-y-4 max-w-2xl">
+            <div class="grid gap-8 lg:grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)] lg:items-start">
+                <div class="space-y-5 max-w-2xl">
                     <p class="text-xs uppercase tracking-[0.35em] text-white/70 font-semibold">Panel financiero</p>
-                    <h1 class="text-3xl sm:text-4xl font-semibold leading-tight">
+                    <h1 class="headline-clamp font-semibold">
                         Hola, <?= htmlspecialchars($profile['name'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?>
                     </h1>
-                    <p class="text-white/80 leading-relaxed">
+                    <p class="body-clamp text-white/80 leading-relaxed">
                         Observa tus resultados del mes, controla el uso de tu límite y avanza hacia <?= htmlspecialchars(strtolower($goalLabel), ENT_QUOTES, 'UTF-8') ?> con decisiones basadas en datos.
                     </p>
                     <?php if ($daysSinceLastMovement !== null && $daysSinceLastMovement >= 7): ?>
@@ -62,11 +123,11 @@ $alertPalette = [
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="bg-white/15 rounded-3xl border border-white/25 backdrop-blur-xl px-6 py-5 w-full md:max-w-sm shadow-floating space-y-3 text-sm">
+                <div class="bg-white/15 rounded-3xl border border-white/25 backdrop-blur-xl px-6 py-6 w-full md:max-w-sm shadow-floating space-y-4 text-sm">
                     <p class="text-white/70 uppercase tracking-wide text-xs font-semibold">Objetivo en curso</p>
                     <p class="text-lg font-semibold"><?= htmlspecialchars($goalLabel, ENT_QUOTES, 'UTF-8') ?></p>
                     <?php if (!empty($profile['goal_description'])): ?>
-                        <p class="text-white/75">
+                        <p class="text-white/75 leading-relaxed">
                             <?= htmlspecialchars($profile['goal_description'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     <?php endif; ?>
@@ -82,9 +143,9 @@ $alertPalette = [
 </header>
 
     <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <a href="/App-Control-Gastos/public/transacciones#registro" class="group flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/90 px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/App-Control-Gastos/public/transacciones#registro" class="group action-card flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/95 px-5 py-5 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between" aria-describedby="cta-register-desc">
             <span class="flex items-start gap-3 sm:items-center">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-100 text-brand-600 shadow-inner shadow-white/40">
+                <span class="action-card__icon inline-flex shrink-0 items-center justify-center bg-brand-100 text-brand-600 shadow-inner shadow-white/40">
                     <?= lucide_icon('plus-circle', 'h-5 w-5') ?>
                 </span>
                 <span class="flex flex-col">
@@ -92,11 +153,12 @@ $alertPalette = [
                     <span class="text-xs text-slate-400 dark:text-slate-500">Añade ingresos o gastos en segundos.</span>
                 </span>
             </span>
-            <?= lucide_icon('chevron-right', 'hidden h-4 w-4 text-slate-300 transition group-hover:text-brand-400 sm:block sm:self-center sm:shrink-0') ?>
+            <?= lucide_icon('chevron-right', 'action-card__chevron hidden h-4 w-4 text-slate-300 sm:block sm:self-center sm:shrink-0') ?>
+            <span id="cta-register-desc" class="sr-only">Registra tus movimientos recientes para mantener el balance actualizado.</span>
         </a>
-        <a href="/App-Control-Gastos/public/reportes" class="group flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/90 px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/App-Control-Gastos/public/reportes" class="group action-card flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/95 px-5 py-5 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between" aria-describedby="cta-reports-desc">
             <span class="flex items-start gap-3 sm:items-center">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-brand-600 shadow-inner shadow-white/40">
+                <span class="action-card__icon inline-flex shrink-0 items-center justify-center bg-sky-100 text-brand-600 shadow-inner shadow-white/40">
                     <?= lucide_icon('line-chart', 'h-5 w-5') ?>
                 </span>
                 <span class="flex flex-col">
@@ -104,11 +166,12 @@ $alertPalette = [
                     <span class="text-xs text-slate-400 dark:text-slate-500">Analiza tendencias y detecta oportunidades.</span>
                 </span>
             </span>
-            <?= lucide_icon('chevron-right', 'hidden h-4 w-4 text-slate-300 transition group-hover:text-brand-400 sm:block sm:self-center sm:shrink-0') ?>
+            <?= lucide_icon('chevron-right', 'action-card__chevron hidden h-4 w-4 text-slate-300 sm:block sm:self-center sm:shrink-0') ?>
+            <span id="cta-reports-desc" class="sr-only">Explora comparativas históricas y detecta oportunidades de ahorro.</span>
         </a>
-        <a href="/App-Control-Gastos/public/perfil#limite" class="group flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/90 px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/App-Control-Gastos/public/perfil#limite" class="group action-card flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/95 px-5 py-5 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between" aria-describedby="cta-limit-desc">
             <span class="flex items-start gap-3 sm:items-center">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-brand-600 shadow-inner shadow-white/40">
+                <span class="action-card__icon inline-flex shrink-0 items-center justify-center bg-emerald-100 text-brand-600 shadow-inner shadow-white/40">
                     <?= lucide_icon('gauge', 'h-5 w-5') ?>
                 </span>
                 <span class="flex flex-col">
@@ -116,7 +179,8 @@ $alertPalette = [
                     <span class="text-xs text-slate-400 dark:text-slate-500">Optimiza tu presupuesto mensual al instante.</span>
                 </span>
             </span>
-            <?= lucide_icon('chevron-right', 'hidden h-4 w-4 text-slate-300 transition group-hover:text-brand-400 sm:block sm:self-center sm:shrink-0') ?>
+            <?= lucide_icon('chevron-right', 'action-card__chevron hidden h-4 w-4 text-slate-300 sm:block sm:self-center sm:shrink-0') ?>
+            <span id="cta-limit-desc" class="sr-only">Actualiza tus límites para recibir alertas más precisas en tiempo real.</span>
         </a>
     </section>
 
@@ -126,17 +190,29 @@ $alertPalette = [
                 <?php
                 $palette = $alertPalette[$alert['level']] ?? ['border' => 'border-slate-200/70', 'bg' => 'bg-white dark:bg-slate-900/70', 'text' => 'text-slate-600 dark:text-slate-300', 'accent' => 'bg-slate-200/60'];
                 $payload = $alert['payload'] ?? [];
+                $icon = $alertIcons[$alert['level']] ?? 'alert-circle';
+                $relativeTime = $formatRelativeTime($alert['created_at'] ?? null);
                 ?>
-                <article class="surface-card rounded-3xl border <?= $palette['border'] ?> <?= $palette['bg'] ?> px-6 py-5 shadow-soft transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
+                <article class="alert-card surface-card rounded-3xl border <?= $palette['border'] ?> <?= $palette['bg'] ?> px-6 py-5 shadow-soft transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating" role="status" aria-live="polite">
                     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                        <div class="flex-1 space-y-2">
-                            <div class="inline-flex items-center gap-2 rounded-full <?= $palette['accent'] ?> px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-100 self-start md:self-auto">
-                                <span class="inline-flex h-2 w-2 rounded-full bg-current"></span>
-                                Alerta <?= strtoupper($alert['level']) ?>
+                        <div class="flex-1 space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/80 dark:bg-slate-900/60 text-brand-600 dark:text-info">
+                                    <?= lucide_icon($icon, 'h-5 w-5') ?>
+                                </span>
+                                <div class="space-y-2">
+                                    <div class="inline-flex items-center gap-2 rounded-full <?= $palette['accent'] ?> px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-100 self-start md:self-auto">
+                                        <span class="inline-flex h-2 w-2 rounded-full bg-current"></span>
+                                        Alerta <?= strtoupper($alert['level']) ?>
+                                    </div>
+                                    <p class="text-sm font-semibold <?= $palette['text'] ?>">
+                                        <?= htmlspecialchars($alert['message'], ENT_QUOTES, 'UTF-8') ?>
+                                    </p>
+                                    <?php if ($relativeTime): ?>
+                                        <p class="text-xs text-slate-400 dark:text-slate-500"><?= htmlspecialchars($relativeTime, ENT_QUOTES, 'UTF-8') ?></p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                            <p class="text-sm font-semibold <?= $palette['text'] ?>">
-                                <?= htmlspecialchars($alert['message'], ENT_QUOTES, 'UTF-8') ?>
-                            </p>
                             <?php if (!empty($payload)): ?>
                                 <dl class="grid sm:grid-cols-2 gap-3 text-xs text-slate-500 dark:text-slate-300">
                                     <?php foreach ($payload as $key => $value): ?>
@@ -155,7 +231,7 @@ $alertPalette = [
                         <form action="/App-Control-Gastos/public/alertas/marcar" method="POST" class="shrink-0">
                             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') ?>">
                             <input type="hidden" name="alert_id" value="<?= (int) $alert['id'] ?>">
-                            <button class="inline-flex items-center gap-2 rounded-full border border-slate-200/70 dark:border-slate-700/60 px-4 py-2 text-xs font-semibold text-brand-600 dark:text-info hover:border-brand-200 transition self-start md:self-auto <?= $alert['seen_at'] ? 'opacity-60 pointer-events-none' : '' ?>">
+                            <button class="inline-flex items-center gap-2 rounded-full border border-slate-200/70 dark:border-slate-700/60 px-4 py-2 text-xs font-semibold text-brand-600 dark:text-info hover:border-brand-200 hover:bg-white/70 dark:hover:bg-slate-800/40 transition self-start md:self-auto <?= $alert['seen_at'] ? 'opacity-60 pointer-events-none' : '' ?>">
                                 <?= lucide_icon('check', 'h-4 w-4') ?>
                                 <?= $alert['seen_at'] ? 'Alerta atendida' : 'Marcar como leída' ?>
                             </button>
@@ -166,7 +242,7 @@ $alertPalette = [
         </section>
     <?php endif; ?>
 
-    <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <section class="grid dashboard-metrics gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>

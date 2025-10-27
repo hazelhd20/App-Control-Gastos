@@ -44,22 +44,41 @@ function bindMobileNavigation() {
 
     const setMenuVisibility = (shouldShow, options = {}) => {
         const { skipFocusReset = false } = options;
-        const isHidden = !shouldShow;
-        menu.classList.toggle('hidden', isHidden);
-        menu.setAttribute('aria-hidden', String(isHidden));
-        trigger.setAttribute('aria-expanded', String(!isHidden));
+        const ANIMATION_MS = 280;
+
+        if (shouldShow) {
+            menu.classList.remove('hidden');
+            menu.dataset.state = 'open';
+            menu.setAttribute('aria-hidden', 'false');
+            trigger.setAttribute('aria-expanded', 'true');
+        } else {
+            menu.dataset.state = 'closing';
+            menu.setAttribute('aria-hidden', 'true');
+            trigger.setAttribute('aria-expanded', 'false');
+
+            window.setTimeout(() => {
+                if (menu.dataset.state === 'closing') {
+                    menu.classList.add('hidden');
+                    menu.dataset.state = 'closed';
+                }
+                if (!skipFocusReset) {
+                    trigger.focus();
+                }
+            }, ANIMATION_MS);
+        }
 
         if (shouldShow) {
             requestAnimationFrame(() => {
                 const focusable = menu.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 focusable?.focus();
             });
-        } else if (!skipFocusReset) {
-            trigger.focus();
         }
     };
 
-    setMenuVisibility(false, { skipFocusReset: true });
+    menu.dataset.state = 'closed';
+    menu.classList.add('hidden');
+    menu.setAttribute('aria-hidden', 'true');
+    trigger.setAttribute('aria-expanded', 'false');
 
     trigger.addEventListener('click', () => {
         const willOpen = menu.classList.contains('hidden');
@@ -78,6 +97,12 @@ function bindMobileNavigation() {
             setMenuVisibility(false);
         });
     }
+
+    menu.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setMenuVisibility(false);
+        }
+    });
 }
 
 function bindGoalDynamicFields() {
@@ -244,10 +269,10 @@ function initSidebarToggle() {
         sidebar.classList.toggle('is-collapsed', isCollapsed);
         appGrid.classList.toggle('app-grid--collapsed', isCollapsed);
         toggle.setAttribute('aria-expanded', String(!isCollapsed));
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
-        // Corrige acento en menú
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
-        toggle.querySelector('[data-sidebar-toggle-label]').textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
+        const toggleLabel = toggle.querySelector('[data-sidebar-toggle-label]');
+        if (toggleLabel) {
+            toggleLabel.textContent = isCollapsed ? 'Expandir menú' : 'Colapsar menú';
+        }
         const icon = toggle.querySelector('svg');
         if (icon) {
             icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
