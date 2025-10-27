@@ -56,10 +56,10 @@ function mobileIcon(string $icon): string
                     <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
                 </button>
             </div>
-            <nav class="flex-1 overflow-y-auto px-6 py-6 space-y-3 text-sm">
+            <nav class="flex-1 overflow-y-auto px-6 py-6 space-y-2 text-sm">
                 <?php foreach ($navItems as $item): ?>
                     <a href="<?= htmlspecialchars($item['href'], ENT_QUOTES, 'UTF-8') ?>"
-                       class="flex items-center gap-3 rounded-2xl border border-transparent bg-slate-50/60 dark:bg-slate-800/40 px-4 py-3 text-slate-700 dark:text-slate-200 font-semibold hover:border-info/40 hover:text-brand-600 dark:hover:text-info transition"
+                       class="mobile-nav-link"
                        data-nav-link>
                         <?= mobileIcon($item['icon']) ?>
                         <span><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></span>

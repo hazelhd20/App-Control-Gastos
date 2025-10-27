@@ -206,6 +206,7 @@ function initThemeToggle() {
         toggle.setAttribute('data-theme-state', resolved);
         toggle.setAttribute('aria-pressed', resolved === 'dark' ? 'true' : 'false');
         toggle.setAttribute('aria-label', resolved === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+        toggle.setAttribute('title', resolved === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
         toggle.querySelectorAll('[data-theme-toggle-label]').forEach((label) => {
             label.textContent = nextLabel;
         });
@@ -335,6 +336,8 @@ function autoDismissToasts() {
         const raw = toast.getAttribute('data-autohide') || '';
         const delay = Number.parseInt(raw, 10);
         const timeout = Number.isFinite(delay) && delay > 0 ? delay : DEFAULT_DELAY;
+
+        toast.style.setProperty('--toast-duration', `${timeout}ms`);
 
         window.setTimeout(() => {
             if (!document.body.contains(toast)) return;

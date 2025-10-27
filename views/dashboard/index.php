@@ -48,11 +48,11 @@ $alertPalette = [
         <div class="space-y-8 relative z-10">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div class="space-y-4 max-w-2xl">
-                    <p class="text-xs uppercase tracking-[0.35em] text-white/70 font-semibold">Panel financiero</p>
+                    <p class="text-xs uppercase tracking-[0.18em] text-white/70 font-semibold">Panel financiero</p>
                     <h1 class="text-3xl sm:text-4xl font-semibold leading-tight">
                         Hola, <?= htmlspecialchars($profile['name'] ?? 'Usuario', ENT_QUOTES, 'UTF-8') ?>
                     </h1>
-                    <p class="text-white/80 leading-relaxed">
+                    <p class="text-white/75 leading-relaxed">
                         Observa tus resultados del mes, controla el uso de tu límite y avanza hacia <?= htmlspecialchars(strtolower($goalLabel), ENT_QUOTES, 'UTF-8') ?> con decisiones basadas en datos.
                     </p>
                     <?php if ($daysSinceLastMovement !== null && $daysSinceLastMovement >= 7): ?>
@@ -82,38 +82,38 @@ $alertPalette = [
 </header>
 
     <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <a href="/App-Control-Gastos/public/transacciones#registro" class="group flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/90 px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/App-Control-Gastos/public/transacciones#registro" class="group flex w-full flex-col items-start gap-4 rounded-2xl border border-slate-200/70 bg-white/90 px-5 py-5 shadow-sm transition hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
             <span class="flex items-start gap-3 sm:items-center">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-100 text-brand-600 shadow-inner shadow-white/40">
+                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-900/5 text-brand-600 shadow-inner shadow-white/30 dark:bg-white/10 dark:text-info">
                     <?= lucide_icon('plus-circle', 'h-5 w-5') ?>
                 </span>
                 <span class="flex flex-col">
                     <span class="text-sm font-semibold text-slate-700 dark:text-slate-100">Registrar movimiento</span>
-                    <span class="text-xs text-slate-400 dark:text-slate-500">Añade ingresos o gastos en segundos.</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Añade ingresos o gastos en segundos.</span>
                 </span>
             </span>
             <?= lucide_icon('chevron-right', 'hidden h-4 w-4 text-slate-300 transition group-hover:text-brand-400 sm:block sm:self-center sm:shrink-0') ?>
         </a>
-        <a href="/App-Control-Gastos/public/reportes" class="group flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/90 px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/App-Control-Gastos/public/reportes" class="group flex w-full flex-col items-start gap-4 rounded-2xl border border-slate-200/70 bg-white/90 px-5 py-5 shadow-sm transition hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
             <span class="flex items-start gap-3 sm:items-center">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-brand-600 shadow-inner shadow-white/40">
+                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-900/5 text-brand-600 shadow-inner shadow-white/30 dark:bg-white/10 dark:text-info">
                     <?= lucide_icon('line-chart', 'h-5 w-5') ?>
                 </span>
                 <span class="flex flex-col">
                     <span class="text-sm font-semibold text-slate-700 dark:text-slate-100">Explorar reportes</span>
-                    <span class="text-xs text-slate-400 dark:text-slate-500">Analiza tendencias y detecta oportunidades.</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Analiza tendencias y detecta oportunidades.</span>
                 </span>
             </span>
             <?= lucide_icon('chevron-right', 'hidden h-4 w-4 text-slate-300 transition group-hover:text-brand-400 sm:block sm:self-center sm:shrink-0') ?>
         </a>
-        <a href="/App-Control-Gastos/public/perfil#limite" class="group flex w-full flex-col items-start gap-4 rounded-3xl border border-slate-200/70 bg-white/90 px-5 py-4 shadow-sm transition hover:-translate-y-1 hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/App-Control-Gastos/public/perfil#limite" class="group flex w-full flex-col items-start gap-4 rounded-2xl border border-slate-200/70 bg-white/90 px-5 py-5 shadow-sm transition hover:shadow-floating focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 dark:border-slate-800/70 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
             <span class="flex items-start gap-3 sm:items-center">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-brand-600 shadow-inner shadow-white/40">
+                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-900/5 text-brand-600 shadow-inner shadow-white/30 dark:bg-white/10 dark:text-info">
                     <?= lucide_icon('gauge', 'h-5 w-5') ?>
                 </span>
                 <span class="flex flex-col">
                     <span class="text-sm font-semibold text-slate-700 dark:text-slate-100">Ajustar límites</span>
-                    <span class="text-xs text-slate-400 dark:text-slate-500">Optimiza tu presupuesto mensual al instante.</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Optimiza tu presupuesto mensual al instante.</span>
                 </span>
             </span>
             <?= lucide_icon('chevron-right', 'hidden h-4 w-4 text-slate-300 transition group-hover:text-brand-400 sm:block sm:self-center sm:shrink-0') ?>
@@ -171,7 +171,7 @@ $alertPalette = [
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Ingresos base</p>
-                    <p class="mt-3 text-3xl font-bold text-brand-700 dark:text-info">
+                    <p class="mt-3 text-3xl font-bold text-slate-900 dark:text-slate-100">
                         <?= number_format($summary['base_income'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
@@ -179,14 +179,14 @@ $alertPalette = [
                     <?= lucide_icon('wallet', 'h-5 w-5') ?>
                 </span>
             </div>
-            <p class="mt-4 text-xs text-slate-500">Incluye tus ingresos mensuales y adicionales configurados en el perfil.</p>
+            <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Incluye tus ingresos mensuales y adicionales configurados en el perfil.</p>
         </article>
 
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Ingresos registrados</p>
-                    <p class="mt-3 text-3xl font-bold text-brand-700 dark:text-info">
+                    <p class="mt-3 text-3xl font-bold text-slate-900 dark:text-slate-100">
                         <?= number_format($summary['registered_income'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
@@ -194,7 +194,7 @@ $alertPalette = [
                     <?= lucide_icon('badge-check', 'h-5 w-5') ?>
                 </span>
             </div>
-            <p class="mt-4 text-xs text-slate-500">Dinero capturado en el periodo actual, perfecto para actualizar tus flujos.</p>
+            <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Dinero capturado en el periodo actual, perfecto para actualizar tus flujos.</p>
         </article>
 
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
@@ -209,14 +209,14 @@ $alertPalette = [
                     <?= lucide_icon('trending-down', 'h-5 w-5') ?>
                 </span>
             </div>
-            <p class="mt-4 text-xs text-slate-500">Total de egresos registrados. Analiza tus categorías para mejorar cada rubro.</p>
+            <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Total de egresos registrados. Analiza tus categorías para mejorar cada rubro.</p>
         </article>
 
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Saldo disponible</p>
-                    <p class="mt-3 text-3xl font-bold <?= $summary['available'] >= 0 ? 'text-brand-700 dark:text-info' : 'text-danger' ?>">
+                    <p class="mt-3 text-3xl font-bold <?= $summary['available'] >= 0 ? 'text-slate-900 dark:text-slate-100' : 'text-danger' ?>">
                         <?= number_format($summary['available'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
@@ -224,7 +224,7 @@ $alertPalette = [
                     <?= lucide_icon('piggy-bank', 'h-5 w-5') ?>
                 </span>
             </div>
-            <p class="mt-4 text-xs text-slate-500">Resultado entre ingresos y gastos. Ideal para planear tus proximos objetivos.</p>
+            <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Resultado entre ingresos y gastos. Ideal para planear tus próximos objetivos.</p>
         </article>
     </section>
 
@@ -232,7 +232,7 @@ $alertPalette = [
         <article class="chart-card bg-white dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800/60 shadow-soft">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                 <div>
-                    <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Tendencia de ingresos y gastos</h2>
+                    <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Tendencia de ingresos y gastos</h2>
                     <p class="text-sm text-slate-500 mt-1">Identifica patrones y toma acciones preventivas ante los picos de gasto.</p>
                 </div>
                 <a href="/App-Control-Gastos/public/reportes" class="inline-flex items-center gap-2 rounded-full border border-brand-200/70 text-brand-600 px-4 py-2 text-xs font-semibold hover:bg-brand-50 transition self-start md:self-auto">
@@ -247,7 +247,7 @@ $alertPalette = [
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Uso del límite mensual</p>
-                    <p class="mt-2 text-lg font-semibold text-brand-700 dark:text-info"><?= $limitUsagePercent ?>%</p>
+                    <p class="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100"><?= $limitUsagePercent ?>%</p>
                 </div>
                 <div class="relative h-28 w-28 shrink-0">
                     <svg width="112" height="112">
@@ -260,12 +260,12 @@ $alertPalette = [
                     </div>
                 </div>
             </div>
-            <p class="text-sm text-slate-500">
+            <p class="text-sm text-slate-500 dark:text-slate-400">
                 <?= $summary['over_limit']
                     ? 'Superaste tu límite planificado. Revisa las categorías con mayor impacto y define acciones inmediatas.'
                     : 'Estás dentro de tu límite mensual. Mantente atento a los próximos movimientos para conservar el equilibrio.' ?>
             </p>
-            <div class="space-y-2 text-xs text-slate-500">
+            <div class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
                 <div class="flex items-center justify-between">
                     <span>Gastos acumulados</span>
                     <span><?= number_format($summary['expenses'], 2) ?> <?= $currency ?></span>
@@ -285,7 +285,7 @@ $alertPalette = [
     <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr] xl:grid-cols-[1.5fr_1fr]">
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 space-y-5 shadow-soft dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Acciones sugeridas</h2>
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Acciones sugeridas</h2>
                 <span class="badge-soft">Productividad</span>
             </div>
             <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
@@ -320,7 +320,7 @@ $alertPalette = [
         </article>
 
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 shadow-soft dark:border-slate-800/60">
-            <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-3">Métodos de gasto configurados</h2>
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3">Métodos de gasto configurados</h2>
             <?php if (empty($media)): ?>
                 <p class="text-sm text-slate-500">Configura tus medios de gasto para visualizar comparativas por canal.</p>
             <?php else: ?>
@@ -338,7 +338,7 @@ $alertPalette = [
 
     <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 shadow-soft dark:border-slate-800/60">
-            <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-4">Top categorías de gasto</h2>
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Top categorías de gasto</h2>
             <?php if (empty($topCategories)): ?>
                 <p class="text-sm text-slate-500">Aún no hay datos suficientes este mes. Registra tus gastos para comenzar a analizarlos.</p>
             <?php else: ?>
@@ -354,7 +354,7 @@ $alertPalette = [
         </article>
 
         <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 shadow-soft dark:border-slate-800/60">
-            <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-4">Métodos de pago más usados</h2>
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Métodos de pago más usados</h2>
             <?php if (empty($paymentBreakdown)): ?>
                 <p class="text-sm text-slate-500">Registra movimientos para visualizar tus métodos de pago preferidos.</p>
             <?php else: ?>
@@ -362,7 +362,7 @@ $alertPalette = [
                     <?php foreach ($paymentBreakdown as $item): ?>
                         <li class="flex items-center justify-between rounded-2xl border border-slate-200/60 dark:border-slate-700/50 px-4 py-2">
                             <span class="font-semibold"><?= ucfirst($item['payment_method']) ?></span>
-                            <span class="text-brand-700 dark:text-info font-semibold"><?= number_format((float) $item['total'], 2) ?> <?= $currency ?></span>
+                            <span class="text-slate-900 dark:text-slate-100 font-semibold"><?= number_format((float) $item['total'], 2) ?> <?= $currency ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -370,7 +370,7 @@ $alertPalette = [
         </article>
 
         <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 shadow-soft">
-            <h2 class="text-lg font-semibold text-brand-700 dark:text-info mb-4">Historial de consumo</h2>
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Historial de consumo</h2>
             <?php if (empty($recent)): ?>
                 <div class="flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-slate-300/70 dark:border-slate-700/70 bg-slate-50/60 dark:bg-slate-900/40 px-6 py-10 text-center">
                     <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/80 dark:bg-slate-800/70 text-brand-500 shadow-inner shadow-white/40">
@@ -412,7 +412,7 @@ $alertPalette = [
     <section class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-8 shadow-soft space-y-4">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
-                <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Movimientos recientes</h2>
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Movimientos recientes</h2>
                 <p class="text-sm text-slate-500">Consulta tu historial mas cercano y valida que todo este en orden.</p>
             </div>
             <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full border border-brand-200/70 text-brand-600 px-4 py-2 text-xs font-semibold hover:bg-brand-50 transition self-start md:self-auto">

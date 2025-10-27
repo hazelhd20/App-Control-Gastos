@@ -133,6 +133,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                             <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
                                 <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
                             </button>
+                            <span class="ui-toast__timer" data-toast-timer aria-hidden="true"></span>
                         </div>
                     <?php endif; ?>
 
@@ -145,6 +146,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                             <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
                                 <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
                             </button>
+                            <span class="ui-toast__timer" data-toast-timer aria-hidden="true"></span>
                         </div>
                     <?php endif; ?>
 
@@ -157,6 +159,7 @@ $pageTitle = $title ?? 'Control de Gastos';
                             <button type="button" class="ui-toast__close" data-dismiss-toast aria-label="Cerrar notificación">
                                 <span class="h-4 w-4" data-lucide="x" aria-hidden="true"></span>
                             </button>
+                            <span class="ui-toast__timer" data-toast-timer aria-hidden="true"></span>
                         </div>
                     <?php endif; ?>
 

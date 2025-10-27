@@ -54,8 +54,8 @@ function renderSidebarIcon(string $icon): string
         <span class="sr-only" data-sidebar-toggle-label>Colapsar menú</span>
         <span class="h-5 w-5" data-lucide="panel-left-close" aria-hidden="true"></span>
     </button>
-    <div class="flex items-center gap-3 mb-10 sidebar-brand">
-        <span class="flex h-12 w-12 items-center justify-center rounded-3xl bg-brand-600 text-white text-xl font-semibold shadow-floating sidebar-brand__logo">
+    <div class="flex items-center gap-3 mb-6 sidebar-brand">
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white text-xl font-semibold shadow-floating sidebar-brand__logo">
             CG
         </span>
         <div class="sidebar-brand__copy">
@@ -64,18 +64,18 @@ function renderSidebarIcon(string $icon): string
         </div>
     </div>
 
+    <div class="border-t border-slate-200/70 dark:border-slate-800/70 mb-6"></div>
+
     <nav class="flex-1 space-y-1 text-sm text-slate-500 dark:text-slate-400">
         <?php foreach ($navItems as $item): ?>
             <a href="<?= htmlspecialchars($item['href'], ENT_QUOTES, 'UTF-8') ?>"
-               class="nav-pill hover-lift"
+               class="nav-pill"
                data-nav-link
                data-nav-pill
-               aria-label="<?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?>">
+               aria-label="<?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?>"
+               title="<?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?>">
                 <?= renderSidebarIcon($item['icon']) ?>
-                <span class="flex flex-col">
-                    <span class="text-sm font-semibold text-slate-700 dark:text-slate-100"><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></span>
-                    <span class="text-xs text-slate-400 dark:text-slate-500"><?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?></span>
-                </span>
+                <span class="text-sm font-semibold text-slate-700 dark:text-slate-100"><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></span>
             </a>
         <?php endforeach; ?>
     </nav>
