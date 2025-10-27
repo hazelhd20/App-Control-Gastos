@@ -56,7 +56,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
     <header class="gradient-card px-6 py-8 sm:px-10 sm:py-10 md:p-12 shadow-floating flex flex-col gap-8">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div class="flex items-start gap-4">
-                <div class="h-16 w-16 rounded-full bg-white/90/20 text-white font-semibold text-2xl flex items-center justify-center avatar-ring">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 text-white text-2xl font-semibold ring-[3px] ring-white/70 shadow-[0_12px_24px_-16px_rgba(15,23,42,0.45)]">
                     <?= htmlspecialchars($userInitial, ENT_QUOTES, 'UTF-8') ?>
                 </div>
                 <div class="space-y-2">
@@ -70,7 +70,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                 </div>
             </div>
             <div class="flex flex-wrap gap-3">
-                <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-white/90/90 text-brand-600 px-4 py-2.5 sm:px-5 sm:py-3 text-sm md:text-base font-semibold shadow-soft hover:bg-white/90 transition">
+                <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-white/90 text-brand-600 px-4 py-2.5 sm:px-5 sm:py-3 text-sm md:text-base font-semibold shadow-soft hover:bg-white/90 transition">
                     <?= $icon('plus-circle') ?>
                     Registrar movimiento
                 </a>
@@ -97,10 +97,10 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
     </header>
 
     <section class="grid gap-6 lg:grid-cols-3">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Ingreso total mensual</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('wallet') ?>
                 </span>
             </div>
@@ -108,10 +108,10 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <p class="text-xs text-slate-400">Incluye ingresos fijos y adicionales registrados.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Limite de gastos</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('target') ?>
                 </span>
             </div>
@@ -119,10 +119,10 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             <p class="text-xs text-slate-400">Recibiras alertas al acercarte a este monto objetivo.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Medios de gasto</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('credit-card') ?>
                 </span>
             </div>
@@ -147,38 +147,46 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="space-y-2">
                         <label for="name" class="text-sm font-semibold text-slate-600">Nombre completo</label>
-                        <div class="input-icon">
-                            <?= $icon('user-round') ?>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                                <?= $icon('user-round') ?>
+                            </span>
                             <input id="name" name="name" type="text" required
                                    value="<?= htmlspecialchars($value('name'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 pl-12 pr-4 py-3 transition">
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label for="phone" class="text-sm font-semibold text-slate-600">Teléfono</label>
-                        <div class="input-icon">
-                            <?= $icon('phone') ?>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                                <?= $icon('phone') ?>
+                            </span>
                             <input id="phone" name="phone" type="tel" required
                                    value="<?= htmlspecialchars($value('phone'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 pl-12 pr-4 py-3 transition">
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label for="occupation" class="text-sm font-semibold text-slate-600">Ocupación</label>
-                        <div class="input-icon">
-                            <?= $icon('briefcase-business') ?>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                                <?= $icon('briefcase-business') ?>
+                            </span>
                             <input id="occupation" name="occupation" type="text" required
                                    value="<?= htmlspecialchars($value('occupation'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 pl-12 pr-4 py-3 transition">
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label for="email" class="text-sm font-semibold text-slate-600">Correo electrónico</label>
-                        <div class="input-icon">
-                            <?= $icon('mail') ?>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                                <?= $icon('mail') ?>
+                            </span>
                             <input id="email" name="email" type="email" required
                                    value="<?= htmlspecialchars($value('email'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3 transition">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 pl-12 pr-4 py-3 transition">
                         </div>
                     </div>
                 </div>
@@ -192,24 +200,24 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                         <input id="monthly_income" name="monthly_income" type="number" step="0.01" min="0" required
                                value="<?= htmlspecialchars($value('monthly_income'), ENT_QUOTES, 'UTF-8') ?>"
                                data-income-input
-                               class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                               class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                     </div>
                     <div class="space-y-2">
                         <label for="extra_income" class="text-sm font-semibold text-slate-600">Ingreso adicional</label>
                         <input id="extra_income" name="extra_income" type="number" step="0.01" min="0"
                                value="<?= htmlspecialchars($value('extra_income'), ENT_QUOTES, 'UTF-8') ?>"
-                               class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                               class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                     </div>
                     <div class="space-y-2">
                         <label for="start_date" class="text-sm font-semibold text-slate-600">Fecha de inicio</label>
                         <input id="start_date" name="start_date" type="date" required
                                value="<?= htmlspecialchars($value('start_date'), ENT_QUOTES, 'UTF-8') ?>"
-                               class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                               class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                     </div>
                     <div class="space-y-2">
                         <label for="currency" class="text-sm font-semibold text-slate-600">Moneda</label>
                         <select id="currency" name="currency" required
-                                class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                                class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                             <?php foreach ($currencies as $currency): ?>
                                 <option value="<?= $currency ?>" <?= $value('currency') === $currency ? 'selected' : '' ?>>
                                     <?= $currency ?>
@@ -236,9 +244,9 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                             $label = ucfirst($media === 'otros' ? 'Otros medios' : $media);
                             $iconName = $mediaLucide[$media] ?? $mediaLucide['otros'];
                             ?>
-                            <label class="flex items-center justify-between gap-4 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/90/80 dark:bg-slate-900/60 hover:border-brand-200 transition">
+                            <label class="flex items-center justify-between gap-4 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/80 dark:bg-slate-900/60 transition-all duration-200 ease-out hover:border-brand-200 hover:shadow-sm">
                                 <div class="flex items-center gap-3">
-                                    <span class="icon-circle">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                                         <?= $icon($iconName, 'h-4 w-4') ?>
                                     </span>
                                     <span class="text-slate-600 font-semibold"><?= $label ?></span>
@@ -257,7 +265,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
 
                 <div class="space-y-4">
                     <select name="goal_type" data-goal-select required
-                            class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                            class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                         <option value="save" <?= $value('goal_type') === 'save' ? 'selected' : '' ?>>Ahorrar</option>
                         <option value="debt" <?= $value('goal_type') === 'debt' ? 'selected' : '' ?>>Pagar deudas</option>
                         <option value="control" <?= $value('goal_type') === 'control' ? 'selected' : '' ?>>Controlar gastos</option>
@@ -269,34 +277,34 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                             <label for="goal_meta_amount" class="text-sm font-semibold text-slate-600">Meta de ahorro</label>
                             <input id="goal_meta_amount" name="goal_meta_amount" type="number" step="0.01" min="0"
                                    value="<?= htmlspecialchars($value('goal_meta_amount'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                             <label for="goal_meta_months" class="text-sm font-semibold text-slate-600 mt-4">Tiempo estimado (meses)</label>
                             <input id="goal_meta_months" name="goal_meta_months" type="number" min="1"
                                    value="<?= htmlspecialchars($value('goal_meta_months'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                         </div>
 
                         <div data-goal-container="debt" class="<?= $value('goal_type') === 'debt' ? '' : 'hidden' ?> space-y-2">
                             <label for="debt_total_amount" class="text-sm font-semibold text-slate-600">Monto total de la deuda</label>
                             <input id="debt_total_amount" name="debt_total_amount" type="number" step="0.01" min="0"
                                    value="<?= htmlspecialchars($value('debt_total_amount'), ENT_QUOTES, 'UTF-8') ?>"
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                         </div>
 
                         <div data-goal-container="other" class="<?= $value('goal_type') === 'other' ? '' : 'hidden' ?> space-y-2 md:col-span-2">
                             <label for="goal_description" class="text-sm font-semibold text-slate-600">Describe tu objetivo</label>
                             <textarea id="goal_description" name="goal_description" rows="3"
-                                      class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3"><?= htmlspecialchars($value('goal_description'), ENT_QUOTES, 'UTF-8') ?></textarea>
+                                      class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3"><?= htmlspecialchars($value('goal_description'), ENT_QUOTES, 'UTF-8') ?></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6">
-                    <label class="flex items-center gap-3 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/90/80 dark:bg-slate-900/60 hover:border-brand-200 transition">
+                    <label class="flex items-center gap-3 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/80 dark:bg-slate-900/60 transition-all duration-200 ease-out hover:border-brand-200 hover:shadow-sm">
                         <input type="radio" name="spending_limit_mode" value="manual" <?= $value('spending_limit_mode', 'manual') === 'manual' ? 'checked' : '' ?> class="text-brand-600 focus:ring-brand-500">
                         <span class="text-slate-600 font-semibold">Definir manualmente</span>
                     </label>
-                    <label class="flex items-center gap-3 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/90/80 dark:bg-slate-900/60 hover:border-brand-200 transition">
+                    <label class="flex items-center gap-3 px-4 py-3 rounded-2xl border border-slate-200/70 bg-white/80 dark:bg-slate-900/60 transition-all duration-200 ease-out hover:border-brand-200 hover:shadow-sm">
                         <input type="radio" name="spending_limit_mode" value="auto" <?= $value('spending_limit_mode', 'manual') === 'auto' ? 'checked' : '' ?> class="text-brand-600 focus:ring-brand-500">
                         <span class="text-slate-600 font-semibold">Calcular automaticamente</span>
                     </label>
@@ -308,7 +316,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                         <input id="spending_limit_amount" name="spending_limit_amount" type="number" step="0.01" min="0"
                                value="<?= htmlspecialchars($value('spending_limit_amount'), ENT_QUOTES, 'UTF-8') ?>"
                                data-limit-input
-                               class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                               class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                     </div>
                     <div class="space-y-2">
                         <label for="auto_limit_ratio" class="text-sm font-semibold text-slate-600">Porcentaje del ingreso</label>
@@ -316,7 +324,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
                             <input id="auto_limit_ratio" name="auto_limit_ratio" type="number" step="0.05" min="0.3" max="0.9"
                                    value="<?= htmlspecialchars($value('auto_limit_ratio', 0.7), ENT_QUOTES, 'UTF-8') ?>"
                                    data-limit-ratio
-                                   class="w-full rounded-2xl border border-slate-200 bg-white/90/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
+                                   class="w-full rounded-2xl border border-slate-200 bg-white/90 focus:border-brand-300 focus:ring focus:ring-info/20 px-4 py-3">
                             <button type="button" data-auto-limit
                                     class="px-4 py-2 rounded-2xl bg-white/90 text-brand-600 border border-brand-200 font-semibold shadow-sm hover:bg-brand-50 transition">
                                 Recalcular
@@ -328,7 +336,7 @@ $activeGoalLabel = $goalLabels[$profile['goal_type']] ?? ($summary['goal']['labe
             </section>
 
             <div class="flex justify-end">
-                <button type="submit" class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-brand-600 text-white font-semibold shadow-floating hover:bg-brand-700 transition transition-press">
+                <button type="submit" class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-brand-600 text-white font-semibold shadow-floating transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40">
                     Guardar cambios
                 </button>
             </div>
