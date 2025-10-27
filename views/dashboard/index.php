@@ -127,7 +127,7 @@ $alertPalette = [
                 $palette = $alertPalette[$alert['level']] ?? ['border' => 'border-slate-200/70', 'bg' => 'bg-white dark:bg-slate-900/70', 'text' => 'text-slate-600 dark:text-slate-300', 'accent' => 'bg-slate-200/60'];
                 $payload = $alert['payload'] ?? [];
                 ?>
-                <article class="surface-card rounded-3xl border <?= $palette['border'] ?> <?= $palette['bg'] ?> px-6 py-5 shadow-soft transition hover-lift">
+                <article class="surface-card rounded-3xl border <?= $palette['border'] ?> <?= $palette['bg'] ?> px-6 py-5 shadow-soft transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
                     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                         <div class="flex-1 space-y-2">
                             <div class="inline-flex items-center gap-2 rounded-full <?= $palette['accent'] ?> px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-100 self-start md:self-auto">
@@ -167,7 +167,7 @@ $alertPalette = [
     <?php endif; ?>
 
     <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
+        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Ingresos base</p>
@@ -175,14 +175,14 @@ $alertPalette = [
                         <?= number_format($summary['base_income'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
-                <span class="icon-circle shrink-0">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner transition-all duration-200 dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= lucide_icon('wallet', 'h-5 w-5') ?>
                 </span>
             </div>
             <p class="mt-4 text-xs text-slate-500">Incluye tus ingresos mensuales y adicionales configurados en el perfil.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
+        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Ingresos registrados</p>
@@ -190,14 +190,14 @@ $alertPalette = [
                         <?= number_format($summary['registered_income'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
-                <span class="icon-circle shrink-0">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner transition-all duration-200 dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= lucide_icon('badge-check', 'h-5 w-5') ?>
                 </span>
             </div>
             <p class="mt-4 text-xs text-slate-500">Dinero capturado en el periodo actual, perfecto para actualizar tus flujos.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
+        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Gastos del mes</p>
@@ -205,14 +205,14 @@ $alertPalette = [
                         <?= number_format($summary['expenses'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
-                <span class="icon-circle shrink-0">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner transition-all duration-200 dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= lucide_icon('trending-down', 'h-5 w-5') ?>
                 </span>
             </div>
             <p class="mt-4 text-xs text-slate-500">Total de egresos registrados. Analiza tus categorías para mejorar cada rubro.</p>
         </article>
 
-        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 hover-lift transition dark:border-slate-800/60">
+        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Saldo disponible</p>
@@ -220,7 +220,7 @@ $alertPalette = [
                         <?= number_format($summary['available'], 2) ?> <?= $currency ?>
                     </p>
                 </div>
-                <span class="icon-circle shrink-0">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner transition-all duration-200 dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= lucide_icon('piggy-bank', 'h-5 w-5') ?>
                 </span>
             </div>
@@ -275,7 +275,7 @@ $alertPalette = [
                     <span><?= number_format($summary['available'], 2) ?> <?= $currency ?></span>
                 </div>
             </div>
-            <a href="/App-Control-Gastos/public/perfil" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white px-4 py-2 text-xs font-semibold hover:bg-brand-700 transition transition-press self-start md:self-auto">
+            <a href="/App-Control-Gastos/public/perfil" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white px-4 py-2 text-xs font-semibold transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40 self-start md:self-auto">
                 Ajustar límite
                 <?= lucide_icon('arrow-left-right', 'h-4 w-4') ?>
             </a>
@@ -283,33 +283,33 @@ $alertPalette = [
     </section>
 
     <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr] xl:grid-cols-[1.5fr_1fr]">
-        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 space-y-5 shadow-soft dark:border-slate-800/60">
+        <article class="surface-card rounded-3xl border border-slate-200/70 p-6 sm:p-7 space-y-5 shadow-soft transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating dark:border-slate-800/60">
             <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Acciones sugeridas</h2>
-                <span class="badge-soft">Productividad</span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-info/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700 dark:bg-info/20 dark:text-info">Productividad</span>
             </div>
             <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
                 <li class="flex items-start gap-3">
-                    <span class="icon-circle shrink-0">
+                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                         <?= lucide_icon('clipboard-check', 'h-4 w-4') ?>
                     </span>
                     Registra tus movimientos recientes para mantener actualizado el balance del periodo.
                 </li>
                 <li class="flex items-start gap-3">
-                    <span class="icon-circle shrink-0">
+                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                         <?= lucide_icon('alarm-clock', 'h-4 w-4') ?>
                     </span>
                     Activa recordatorios para anticiparte a los picos de gasto.
                 </li>
                 <li class="flex items-start gap-3">
-                    <span class="icon-circle shrink-0">
+                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                         <?= lucide_icon('bar-chart-3', 'h-4 w-4') ?>
                     </span>
                     Explora los reportes comparativos para detectar oportunidades de ahorro sostenido.
                 </li>
             </ul>
             <div class="flex flex-wrap gap-3">
-                <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white px-4 py-2 text-xs font-semibold hover:bg-brand-700 transition transition-press self-start md:self-auto">
+                <a href="/App-Control-Gastos/public/transacciones" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white px-4 py-2 text-xs font-semibold transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40 self-start md:self-auto">
                     Registrar movimiento
                     <?= lucide_icon('plus-circle', 'h-4 w-4') ?>
                 </a>

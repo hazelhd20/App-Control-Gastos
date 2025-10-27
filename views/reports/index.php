@@ -60,7 +60,7 @@ $exportQuery = http_build_query([
                 <?= $icon('file-down', 'h-4 w-4') ?>
                 Descargar CSV
             </a>
-            <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=xlsx" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-4 py-2 shadow-floating hover:bg-brand-700 transition transition-press">
+            <a href="/App-Control-Gastos/public/reportes/exportar?<?= $exportQuery ?>&format=xlsx" class="inline-flex items-center gap-2 rounded-full bg-brand-600 text-white text-sm font-semibold px-4 py-2 shadow-floating transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40">
                 <?= $icon('table', 'h-4 w-4') ?>
                 Descargar Excel
             </a>
@@ -100,7 +100,7 @@ $exportQuery = http_build_query([
                 </select>
             </div>
             <div class="md:col-span-5 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
-                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 text-white text-sm md:text-base font-semibold px-5 py-2.5 md:px-6 md:py-3 shadow-floating hover:bg-brand-700 transition transition-press">
+                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 text-white text-sm md:text-base font-semibold px-5 py-2.5 md:px-6 md:py-3 shadow-floating transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40">
                     <?= $icon('filter', 'h-4 w-4') ?>
                     Aplicar filtros
                 </button>
@@ -112,40 +112,40 @@ $exportQuery = http_build_query([
     </section>
 
     <section class="grid gap-6 lg:grid-cols-4">
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Ingresos base</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('clock-3') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['base_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingresos recurrentes configurados en tu perfil.</p>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Ingresos registrados</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('piggy-bank') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-brand-700 dark:text-info"><?= number_format($overview['registered_income'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Ingresos adicionales dentro del periodo filtrado.</p>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Gastos del periodo</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('trending-down') ?>
                 </span>
             </div>
             <p class="text-3xl font-bold text-danger"><?= number_format($overview['expenses'], 2) ?> <?= $currency ?></p>
             <p class="text-xs text-slate-400">Suma de egresos segun los filtros actuales.</p>
         </article>
-        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 hover-lift transition">
+        <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 p-6 sm:p-7 space-y-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-floating">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <p class="text-sm text-slate-500 font-semibold">Resultado neto</p>
-                <span class="icon-circle">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/10 via-info/10 to-brand-600/20 text-brand-600 ring-1 ring-brand-500/20 shadow-inner dark:from-info/20 dark:via-slate-900/60 dark:to-slate-900/80 dark:text-info">
                     <?= $icon('calculator') ?>
                 </span>
             </div>
@@ -162,7 +162,7 @@ $exportQuery = http_build_query([
         <article class="surface-card rounded-3xl border border-slate-200/70 dark:border-slate-800/60 bg-white/90 dark:bg-slate-900/70 p-6 sm:p-7 shadow-soft">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <h2 class="text-xl font-semibold text-brand-700 dark:text-info">Gastos por metodo de pago</h2>
-                <span class="badge-soft">Comparativa</span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-info/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700 dark:bg-info/20 dark:text-info">Comparativa</span>
             </div>
             <?php if (empty($methodData)): ?>
                 <p class="text-sm text-slate-500">Aun no hay datos suficientes para este periodo.</p>

@@ -270,19 +270,9 @@ function highlightActiveNav() {
         const href = link.getAttribute('href') ?? '';
         const normalized = href.replace(/\/+$/, '');
         if (normalized === currentPath) {
-            link.classList.add('is-active');
             link.setAttribute('aria-current', 'page');
-            const parent = link.closest('[data-nav-pill]');
-            if (parent) {
-                parent.classList.add('is-active');
-            }
         } else {
-            link.classList.remove('is-active');
             link.removeAttribute('aria-current');
-            const parent = link.closest('[data-nav-pill]');
-            if (parent) {
-                parent.classList.remove('is-active');
-            }
         }
     });
 }

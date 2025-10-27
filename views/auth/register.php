@@ -25,40 +25,48 @@
 
         <div class="space-y-2 md:col-span-2">
             <label for="name" class="text-sm font-semibold text-slate-600">Nombre completo</label>
-            <div class="input-icon">
-                <?= $icon('user-round') ?>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('user-round') ?>
+                </span>
                 <input id="name" name="name" type="text" required autocomplete="name"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="Nombre y apellidos">
             </div>
         </div>
 
         <div class="space-y-2">
             <label for="phone" class="text-sm font-semibold text-slate-600">Teléfono</label>
-            <div class="input-icon">
-                <?= $icon('phone') ?>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('phone') ?>
+                </span>
                 <input id="phone" name="phone" type="tel" required
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="+52 55 0000 0000">
             </div>
         </div>
 
         <div class="space-y-2">
-            <label for="occupation" class="text-sm font-semibold text-slate-600">Ocupacion</label>
-            <div class="input-icon">
-                <?= $icon('briefcase-business') ?>
+            <label for="occupation" class="text-sm font-semibold text-slate-600">Ocupación</label>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('briefcase-business') ?>
+                </span>
                 <input id="occupation" name="occupation" type="text" required
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="Ej. Analista financiero">
             </div>
         </div>
 
         <div class="space-y-2 md:col-span-2">
             <label for="email" class="text-sm font-semibold text-slate-600">Correo electrónico</label>
-            <div class="input-icon">
-                <?= $icon('mail') ?>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('mail') ?>
+                </span>
                 <input id="email" name="email" type="email" required autocomplete="email"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="correo@ejemplo.com">
             </div>
         </div>
@@ -68,10 +76,12 @@
                 <span>Contraseña</span>
                 <button type="button" data-password-toggle="register_password" class="text-xs text-brand-600 font-semibold hover:underline">Mostrar</button>
             </label>
-            <div class="input-icon">
-                <?= $icon('lock') ?>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('lock') ?>
+                </span>
                 <input id="register_password" name="password" type="password" required minlength="8"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="Crea una contraseña segura">
             </div>
             <p class="text-xs text-slate-400">Debe contener al menos una mayúscula, un número y un carácter especial.</p>
@@ -82,16 +92,18 @@
                 <span>Confirmar contraseña</span>
                 <button type="button" data-password-toggle="register_password_confirmation" class="text-xs text-brand-600 font-semibold hover:underline">Mostrar</button>
             </label>
-            <div class="input-icon">
-                <?= $icon('lock') ?>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('lock') ?>
+                </span>
                 <input id="register_password_confirmation" name="password_confirmation" type="password" required minlength="8"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="Repite tu contraseña">
             </div>
         </div>
 
         <div class="md:col-span-2">
-            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-600 text-white font-semibold px-6 py-3 shadow-floating hover:bg-brand-700 transition transition-press">
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-600 text-white font-semibold px-6 py-3 shadow-floating transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40">
                 <?= $icon('user-plus', 'h-5 w-5') ?>
                 Crear cuenta
             </button>

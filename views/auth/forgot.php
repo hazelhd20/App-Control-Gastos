@@ -15,15 +15,17 @@
 
         <div class="space-y-2">
             <label for="email" class="text-sm font-semibold text-slate-600">Correo electrónico registrado</label>
-            <div class="input-icon">
-                <?= $icon('mail') ?>
+            <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                    <?= $icon('mail') ?>
+                </span>
                 <input id="email" name="email" type="email" required autocomplete="email"
-                       class="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
+                       class="w-full rounded-2xl border border-slate-200 bg-white/90 pl-12 pr-4 py-3 focus:border-brand-300 focus:ring focus:ring-info/20 transition placeholder:text-slate-400"
                        placeholder="correo@ejemplo.com">
             </div>
         </div>
 
-        <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-600 text-white font-semibold px-6 py-3 shadow-floating hover:bg-brand-700 transition transition-press">
+        <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-600 text-white font-semibold px-6 py-3 shadow-floating transition-all duration-200 ease-out hover:bg-brand-700 active:scale-[0.97] active:ring-2 active:ring-brand-300/40">
             <?= $icon('send', 'h-5 w-5') ?>
             Enviar enlace de recuperación
         </button>
